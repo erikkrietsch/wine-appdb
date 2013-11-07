@@ -27,10 +27,11 @@ FactoryGirl.define do
     end
     name "Heinrich Q. Test-eaze"
     email "hank@testease.info"
+    token "123412341234"
     password Digest::SHA1.hexdigest "password"
     after(:build) do |user, evaluator|
-      user.votes = FactoryGirl.build_list(:vote, evaluator.vote_count)
-      user.screenshots = FactoryGirl.build_list(:screenshot, evaluator.ss_count)
+      # user.votes = FactoryGirl.build_list(:vote, evaluator.vote_count)
+      # user.screenshots = FactoryGirl.build_list(:screenshot, evaluator.ss_count)
     end
   end
 

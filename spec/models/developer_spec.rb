@@ -6,7 +6,7 @@ describe Developer do
     expect(developer).to_not be_nil
   end
   it "should have a name" do
-    expect(developer.name).to_not be_empty
+    expect(developer.name).to_not be_nil
   end
   it "should have a description" do
     expect(developer.description).to_not be_nil
