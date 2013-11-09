@@ -1,0 +1,10 @@
+= form_for @wine_app do |f|
+  - if @wine_app.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@wine_app.errors.count, "error")} prohibited this wine_app from being saved:"
+      %ul
+        - @wine_app.errors.full_messages.each do |msg|
+          %li= msg
+
+  .actions
+    = f.submit 'Save'

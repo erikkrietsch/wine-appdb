@@ -1,0 +1,17 @@
+%h1 Listing wine_apps
+
+%table
+  %tr
+    %th
+    %th
+    %th
+
+  - @wine_apps.each do |wine_app|
+    %tr
+      %td= link_to 'Show', wine_app
+      %td= link_to 'Edit', edit_wine_app_path(wine_app)
+      %td= link_to 'Destroy', wine_app, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Wine app', new_wine_app_path
