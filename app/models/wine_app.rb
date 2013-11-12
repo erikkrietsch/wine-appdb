@@ -1,6 +1,6 @@
 class WineApp < ActiveRecord::Base
   has_one :developer
-
+  validates :name, presence: true
   def create
     WineApp.create(wineapp_params)
   end

@@ -7,7 +7,22 @@ WineAppdb::Application.routes.draw do
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
-  get ':controller/:action/:id'
+
+  resources :wine_apps
+  # resources :apps, controller: :wine_apps, as: :wine_apps
+  # get 'profile', to: 'users#show'
+  # get "app", to: "wine_apps#show"
+  # post 'app', to: 'wine_apps#create'
+
+  # get 'apps/', to: 'wine_apps#index'
+  
+  # get 'app/*', to: 'wine_apps', as: :wine_apps
+
+
+  # resources :apps, controller: :wine_apps
+
+  
+  # get ':controller/:action/:id'
 
   # Example of named route that can be invoked with purchase_url(id: product.id)
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase

@@ -23,41 +23,41 @@ describe WineAppsController do
   # This should return the minimal set of attributes required to create a valid
   # WineApp. As you add validations to WineApp, be sure to
   # adjust the attributes here as well.
-  let(:valid_attributes) { {  } }
-
+  let(:valid_attributes) { {:name => "this name", :description => "honk"  } }
+  
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in
   # WineAppsController. Be sure to keep this updated too.
   let(:valid_session) { {} }
 
   describe "GET index" do
-    it "assigns all wine_apps as @wine_apps" do
-      wine_app = WineApp.create! valid_attributes
+    it "exposes all wine_apps as wine_apps" do
+      test_wine_app = WineApp.create! valid_attributes
       get :index, {}, valid_session
-      assigns(:wine_apps).should eq([wine_app])
+      expect(controller.wine_apps).to eq([test_wine_app])
     end
   end
 
   describe "GET show" do
-    it "assigns the requested wine_app as @wine_app" do
+    it "exposes the requested wine_app as wine_app" do
       wine_app = WineApp.create! valid_attributes
       get :show, {:id => wine_app.to_param}, valid_session
-      assigns(:wine_app).should eq(wine_app)
+      expect(controller.wine_app).to eq(wine_app)
     end
   end
 
   describe "GET new" do
-    it "assigns a new wine_app as @wine_app" do
+    it "exposes a new WineApp instance as wine_app" do
       get :new, {}, valid_session
-      assigns(:wine_app).should be_a_new(WineApp)
+      expect(controller.wine_app).to be_a_new(WineApp)
     end
   end
 
   describe "GET edit" do
-    it "assigns the requested wine_app as @wine_app" do
+    it "exposes the requested wine_app as wine_app" do
       wine_app = WineApp.create! valid_attributes
-      get :edit, {:id => wine_app.to_param}, valid_session
-      assigns(:wine_app).should eq(wine_app)
+      get :edit, { :id => wine_app.to_param }, valid_session
+      expect(controller.wine_app).to eq(wine_app)
     end
   end
 
@@ -69,24 +69,24 @@ describe WineAppsController do
         }.to change(WineApp, :count).by(1)
       end
 
-      it "assigns a newly created wine_app as @wine_app" do
+      it "exposes a newly created wine_app as wine_app" do
         post :create, {:wine_app => valid_attributes}, valid_session
-        assigns(:wine_app).should be_a(WineApp)
-        assigns(:wine_app).should be_persisted
+        expect(controller.wine_app).to be_a(WineApp)
+        expect(controller.wine_app).to be_persisted
       end
 
       it "redirects to the created wine_app" do
         post :create, {:wine_app => valid_attributes}, valid_session
-        response.should redirect_to(WineApp.last)
+        expect(response).to redirect_to(WineApp.last)
       end
     end
 
     describe "with invalid params" do
-      it "assigns a newly created but unsaved wine_app as @wine_app" do
+      it "exposes a newly created but unsaved wine_app as @wine_app" do
         # Trigger the behavior that occurs when invalid params are submitted
         WineApp.any_instance.stub(:save).and_return(false)
         post :create, {:wine_app => {  }}, valid_session
-        assigns(:wine_app).should be_a_new(WineApp)
+        expect(controller.wine_app).to be_a_new(WineApp)
       end
 
       it "re-renders the 'new' template" do
@@ -113,13 +113,13 @@ describe WineAppsController do
       it "assigns the requested wine_app as @wine_app" do
         wine_app = WineApp.create! valid_attributes
         put :update, {:id => wine_app.to_param, :wine_app => valid_attributes}, valid_session
-        assigns(:wine_app).should eq(wine_app)
+        expect(controller.wine_app).to eq(wine_app)
       end
 
       it "redirects to the wine_app" do
         wine_app = WineApp.create! valid_attributes
         put :update, {:id => wine_app.to_param, :wine_app => valid_attributes}, valid_session
-        response.should redirect_to(wine_app)
+        expect(response).to redirect_to(wine_app)
       end
     end
 
@@ -129,7 +129,7 @@ describe WineAppsController do
         # Trigger the behavior that occurs when invalid params are submitted
         WineApp.any_instance.stub(:save).and_return(false)
         put :update, {:id => wine_app.to_param, :wine_app => {  }}, valid_session
-        assigns(:wine_app).should eq(wine_app)
+        expect(controller.wine_app).to eq(wine_app)
       end
 
       it "re-renders the 'edit' template" do
@@ -137,7 +137,7 @@ describe WineAppsController do
         # Trigger the behavior that occurs when invalid params are submitted
         WineApp.any_instance.stub(:save).and_return(false)
         put :update, {:id => wine_app.to_param, :wine_app => {  }}, valid_session
-        response.should render_template("edit")
+        expect(response).to render_template("edit")
       end
     end
   end
@@ -153,7 +153,7 @@ describe WineAppsController do
     it "redirects to the wine_apps list" do
       wine_app = WineApp.create! valid_attributes
       delete :destroy, {:id => wine_app.to_param}, valid_session
-      response.should redirect_to(wine_apps_url)
+      expect(response).to redirect_to(wine_apps_url)
     end
   end
 
