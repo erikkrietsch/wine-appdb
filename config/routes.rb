@@ -8,7 +8,10 @@ WineAppdb::Application.routes.draw do
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
-  resources :wine_apps
+  resources :wine_apps do
+    resources :developers
+  end
+  resources :developers
   # resources :apps, controller: :wine_apps, as: :wine_apps
   # get 'profile', to: 'users#show'
   # get "app", to: "wine_apps#show"

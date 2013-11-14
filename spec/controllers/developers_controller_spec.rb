@@ -23,7 +23,7 @@ describe DevelopersController do
   # This should return the minimal set of attributes required to create a valid
   # Developer. As you add validations to Developer, be sure to
   # adjust the attributes here as well.
-  let(:valid_attributes) { {  } }
+  let(:valid_attributes) { { name: "jazzy pants" } }
 
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in
@@ -85,14 +85,14 @@ describe DevelopersController do
       it "assigns a newly created but unsaved developer as @developer" do
         # Trigger the behavior that occurs when invalid params are submitted
         Developer.any_instance.stub(:save).and_return(false)
-        post :create, {:developer => {  }}, valid_session
+        post :create, {:developer => { name: nil }}, valid_session
         assigns(:developer).should be_a_new(Developer)
       end
 
       it "re-renders the 'new' template" do
         # Trigger the behavior that occurs when invalid params are submitted
         Developer.any_instance.stub(:save).and_return(false)
-        post :create, {:developer => {  }}, valid_session
+        post :create, {:developer => { name: nil }}, valid_session
         response.should render_template("new")
       end
     end
@@ -106,8 +106,8 @@ describe DevelopersController do
         # specifies that the Developer created on the previous line
         # receives the :update_attributes message with whatever params are
         # submitted in the request.
-        Developer.any_instance.should_receive(:update).with({ "these" => "params" })
-        put :update, {:id => developer.to_param, :developer => { "these" => "params" }}, valid_session
+        Developer.any_instance.should_receive(:update).with({ "name" => "butts" })
+        put :update, {:id => developer.to_param, :developer => { "name" => "butts" }}, valid_session
       end
 
       it "assigns the requested developer as @developer" do
@@ -128,7 +128,7 @@ describe DevelopersController do
         developer = Developer.create! valid_attributes
         # Trigger the behavior that occurs when invalid params are submitted
         Developer.any_instance.stub(:save).and_return(false)
-        put :update, {:id => developer.to_param, :developer => {  }}, valid_session
+        put :update, {:id => developer.to_param, :developer => { name: nil }}, valid_session
         assigns(:developer).should eq(developer)
       end
 
@@ -136,7 +136,7 @@ describe DevelopersController do
         developer = Developer.create! valid_attributes
         # Trigger the behavior that occurs when invalid params are submitted
         Developer.any_instance.stub(:save).and_return(false)
-        put :update, {:id => developer.to_param, :developer => {  }}, valid_session
+        put :update, {:id => developer.to_param, :developer => { name: nil }}, valid_session
         response.should render_template("edit")
       end
     end
