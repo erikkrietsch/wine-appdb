@@ -1,26 +1,39 @@
 class WineAppsController < ApplicationController
-  respond_to(:html)
-  expose(:wine_apps) { WineApp.order(:name) }
-  expose(:wine_app)
+  # respond_to(:html)
+  # expose(:wine_apps) { WineApp.order(:name) }
+  # expose(:wine_app)
+  before_action :set_wine_app, only: [:update, :show, :edit, :destroy]
 
-  # before_action :set_wine_app, only: [:update] #:show, :edit, , :destroy
 
+  def index
+    @wine_apps = WineApp.order(:name) 
+  end
+
+  def show
+  end
+
+  def edit
+  end
+
+  def new
+    @wine_app = WineApp.new
+  end
 
 
   # POST /wine_apps
   # POST /wine_apps.json
   def create
-    wine_app = WineApp.new(wine_app_params)
+    @wine_app = WineApp.new(wine_app_params)
 
     respond_to do |format|
-      if wine_app.save
+      if @wine_app.save
         # unless wine_app.developer 
         #   format.html { redirect_to }
-        format.html { respond_with wine_app, notice: 'Wine app was successfully created.' }
-        format.json { render action: 'show', status: :created, location: wine_app }
+        format.html { redirect_to @wine_app, notice: 'Wine app was successfully created.' }
+        format.json { render action: 'show', status: :created, location: @wine_app }
       else
         format.html { render action: 'new' }
-        format.json { render json: wine_app.errors, status: :unprocessable_entity }
+        format.json { render json: @wine_app.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -29,12 +42,12 @@ class WineAppsController < ApplicationController
   # PATCH/PUT /wine_apps/1.json
   def update
     respond_to do |format|
-      if wine_app.update(wine_app_params)
-        format.html { respond_with wine_app, notice: 'Wine app was successfully updated.' }
+      if @wine_app.update(wine_app_params)
+        format.html { redirect_to @wine_app, notice: 'Wine app was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
-        format.json { render json: wine_app.errors, status: :unprocessable_entity }
+        format.json { render json: @wine_app.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -42,7 +55,7 @@ class WineAppsController < ApplicationController
   # DELETE /wine_apps/1
   # DELETE /wine_apps/1.json
   def destroy
-    wine_app.destroy
+    @wine_app.destroy
     respond_to do |format|
       format.html { redirect_to wine_apps_url }
       format.json { head :no_content }

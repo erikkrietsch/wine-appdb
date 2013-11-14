@@ -1,7 +1,7 @@
 %h1 Listing wine_apps
 
 %ul
-- wine_apps.each do |wine_app|
+- @wine_apps.each do |wine_app|
   %li
     = wine_app.name
     = link_to 'Show', wine_app; 

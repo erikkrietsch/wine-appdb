@@ -1,9 +1,9 @@
 %p#notice= notice
 
 %ul
-  %li= wine_app.name
-  %li= wine_app.description
+  %li= @wine_app.name
+  %li= @wine_app.description
 
-= link_to 'Edit', edit_wine_app_path(wine_app)
+= link_to 'Edit', edit_wine_app_path(@wine_app)
 \|
 = link_to 'Listing', wine_apps_path

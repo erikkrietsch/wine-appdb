@@ -41,7 +41,6 @@ GEM
       gherkin (~> 2.12.1)
       multi_json (>= 1.7.5, < 2.0)
       multi_test (>= 0.0.2)
-    decent_exposure (2.3.0)
     diff-lcs (1.2.4)
     erubis (2.7.0)
     execjs (2.0.2)
@@ -149,7 +148,6 @@ PLATFORMS
 DEPENDENCIES
   coffee-rails (~> 4.0.0)
   cucumber
-  decent_exposure
   factory_girl_rails
   haml-rails
   jbuilder (~> 1.2)
