@@ -15,7 +15,7 @@ FactoryGirl.define do
 
   factory :vote do
     value { rand(5) + 1 }
-    type { ["quality", "ease" ].sample } 
+    # type { ["quality", "ease" ].sample } 
     association :user, strategy: :build
     association :wine_app, strategy: :build
   end
@@ -28,7 +28,8 @@ FactoryGirl.define do
     name "Heinrich Q. Test-eaze"
     email "hank@testease.info"
     token "123412341234"
-    password Digest::SHA1.hexdigest "password"
+    password_hash Digest::SHA1.hexdigest "password"
+    password_salt "salted"
     after(:build) do |user, evaluator|
       # user.votes = FactoryGirl.build_list(:vote, evaluator.vote_count)
       # user.screenshots = FactoryGirl.build_list(:screenshot, evaluator.ss_count)

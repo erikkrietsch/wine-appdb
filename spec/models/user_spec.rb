@@ -14,8 +14,11 @@ describe User do
   it "should respond to token" do
     expect{ user.token }.to_not raise_error
   end
-  it "should have a password" do
-    expect(user.password).to_not be_nil
+  it "should have a password hash" do
+    expect(user.password_hash).to_not be_nil
+  end
+  it "should have a password salt" do
+    expect(user.password_salt).to_not be_nil
   end
   
 end

@@ -8,6 +8,7 @@ gem 'pg'
 
 gem 'haml-rails'
 gem 'cucumber'
+gem 'devise'
 # gem 'decent_exposure'
 
 # Use SCSS for stylesheets
