@@ -1,4 +1,6 @@
 WineAppdb::Application.routes.draw do
+  get "user/prefs"
+  devise_for :users
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
@@ -12,6 +14,8 @@ WineAppdb::Application.routes.draw do
     resources :developers
   end
   resources :developers
+  root 'wine_apps#index'
+  get "prefs", to: "user#show"
   # resources :apps, controller: :wine_apps, as: :wine_apps
   # get 'profile', to: 'users#show'
   # get "app", to: "wine_apps#show"
