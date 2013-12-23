@@ -1,0 +1,14 @@
+# TODO
+
+associate bug reports with Apps (:has_many_through => )
+populate bug reports table with mock data
+add screenshots to an App
+add TestResults model..?
+clean up App show view
+create application views
+implement Map(Reduce()) jQuery lookup for searching
+create custom devise views
+add landing page
+allow user voting via ajax
+allow user subscriptions to App data for updates
+
