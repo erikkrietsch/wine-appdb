@@ -1,0 +1,108 @@
+/*******************************************************************/
+/* The following styles are used exclusively in appdb              */
+/*******************************************************************/
+TD.cline { background-color: #EEEEEE; color: #000000; 
+	  text-align: center; font-weight: bold; font-size: 10pt; }
+
+TH.qheader { background-color: #C3C8E5; color: #555555; font-size: 10pt; }
+TR.qheader { background-color: #C3C8E5; color: #555555; font-size: 10pt; }
+
+TABLE.bg { background-color: #FF6666; color: #FFFFFF }
+TABLE.bg2 { background-color: #E0E0E0; }
+TD.bg2 { background-color: #E0E0E0; }
+
+TD.line1 { background-color: #E7E7E7; }
+TD.line2 { background-color: #C0C0C0; color: #505050; font-size: 8pt; }
+TD.line3 { background-color: #6F6F6F; }
+TR.line1 { background-color: #E7E7E7; }
+TR.line2 { background-color: #C0C0C0; color: #505050 }
+TR.line3 { background-color: #6F6F6F; }
+
+
+TH.titlex { background-color: #BBC2E5 }
+TH.title { background-color: #C0C0C0; font-weight: bold }
+TD.title { background-color: #C0C0C0; font-weight: bold }
+TD.btitle { background-color: #FFFFFF }
+
+TH.sqtitle { background-color: #C3C8E5; color: #555555 }
+
+
+TR.buttons { background-color: #BDDAE5 }
+TD.button { background-color: #BDDAE5 }
+TD.button2 { background-color: #ABB2D5; }
+
+/* misc table styles */
+.rowtitle { background-color: black; color: white; font-weight: bold; }
+
+/* misc backgrounds from color name */
+.white { background-color: #FFFFFF; }
+
+/* query row colors */
+.color0 { background-color: #E0E0E0 }
+.color1 { background-color: #C0C0C0 }
+.color2 { background-color: #FFFFFF }
+.color3 { background-color: #666666 }
+.color4 { background-color: #999999 }
+
+/* Colors for supported apps table */
+.platinum {background-color: #ECECEC; }
+.gold { background-color: #FFF600 }
+.silver { background-color: silver; }
+.bronze { background-color: #FCBA0A; }
+.garbage { background-color: #999966; }
+
+/* box */
+.box-title { background-color: #AAAAAA; color: #FFFFFF; font-weight: bold }
+.box-label { background-color: #C0C0C0 }
+.box-body  { background-color: #E0E0E0 }
+
+/* labels */
+TD.label { font-weight: bold }
+
+/* for inwine/intwine */
+TD.yes { color: #00B100; font-style: italic; text-align: center }
+TD.no  { color: #B10000; font-style: italic; text-align: center }
+TD.stub { color: #0000B1; font-style: italic; text-align: center }
+
+/* width of the application column in the top 'X' lists on the main page */
+TD.app_name { padding:10px; width: 150px }
+
+/* Rating Number */
+.rating { font-family: Helvetica, Arial; font-size: 6pt; color: #333333; }		  
+
+
+/* Vote Button */
+.votebutton	{ background-color: #666666; color: #ffffff; font-family: Helvetica, Arial; font-size: 8pt; padding: 0; }
+
+
+/* Rate Button */
+.ratebutton	{ background-color: #666666; color: #ffffff; font-family: Helvetica, Arial; font-size: 8pt; padding: 0; }
+
+
+/* Search Button */
+.searchbutton	{ background-color: #666666; color: #ffffff; font-family: Helvetica, Arial; font-size: 10pt; padding: 0; }
+
+/* Search Field */
+.searchfield	{ background-color: #E0E0E0; color: #666666; font-family: Helvetica, Arial; font-size: 10pt; padding: 0; }
+
+/* Note box */
+.note { padding: 7px; }
+
+/* Default div style */
+div.default_container { padding: 5px; }
+
+/*******************************************************************/
+/* Specific elements                                               */
+/*******************************************************************/
+
+/* Main table */
+.mainTable { padding-left: 7px; }
+
+/* Banner div */
+#banner { border: 1px solid black; }
+
+/* Editor textarea */
+#editor { height: 25em; width:700px; }
+
+/* zoom image overlay style */
+.zoom_overlay { position:relative; top:10px; left:10px; margin-left:-32px; padding:0px; }

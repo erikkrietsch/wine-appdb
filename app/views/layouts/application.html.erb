@@ -1,15 +1,89 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>WineAppdb</title>
+  <title>WineHQ <%= @page_title %></title>
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
+
+    <title>WineHQ <?php echo $title; ?></title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta HTTP-EQUIV="Expires" CONTENT="Mon, 06 Jan 1990 00:00:01 GMT">
+    <meta HTTP-EQUIV="Pragma" CONTENT="no-cache">
+    <meta name="description" content="Open Source Software for running Windows applications on other operating systems.">
+    <meta name="keywords" content="windows, linux, macintosh, solaris, freebsd">
+    <meta name="robots" content="index, follow">
+    <meta name="copyright" content="Copyright WineHQ.org All Rights Reserved.">
+    <meta name="language" content="English">
+    <meta name="revisit-after" content="1">
+    <script language="JavaScript" src="jquery.js" type="text/javascript"></script>
+    <script language="JavaScript" src="utils.js" type="text/javascript"></script>
+    <script type="text/javascript" 
+    src="//ajax.googleapis.com/ajax/libs/prototype/1.6.0.2/prototype.js"></script>
+    <script src="scripts.js" type="text/javascript"></script>
+    <link rel="icon" type="image/png" href="images/winehq_logo_16.png">
+    <link rel="shortcut icon" type="image/png" href="images/winehq_logo_16.png">
+    <link title="AppDB" type="application/opensearchdescription+xml" rel="search" href="opensearch.xml">
 </head>
 <body>
-	<p class="notice"><%= notice %></p>
-	<p class="alert"><%= alert %></p>
+
+<div id="logo_glass"><%= link_to image_tag("winehq_logo_glass_sm.png", {alt: ""}), :root %></div>
+<div id="logo_text"><%= link_to image_tag("winehq_logo_text.png", {alt: "WineHQ", title: "WineHQ"}), :root %></div>
+
+<div id="logo_blurb"><%= @page_title %></div>
+
+<div id="search_box">
+  <form action="//www.winehq.org/search" id="cse-search-box" style="margin: 0; padding: 0;">
+    <input type="hidden" name="cx" value="partner-pub-0971840239976722:w9sqbcsxtyf">
+    <input type="hidden" name="cof" value="FORID:10">
+    <input type="hidden" name="ie" value="UTF-8">
+    <!-- <span style="color: #ffffff;">Search:</span> <input type="text" name="q" size="20"> -->
+  </form>
+  <script type="text/javascript" src="//www.google.com/coop/cse/brand?form=cse-search-box&amp;lang=en"></script>
+</div>
+
+<% if user_signed_in? %>
+	<%= link_to 'Logout', destroy_user_session_path, :method=>'delete' %>
+	<%= link_to 'Profile', edit_user_registration_path %>
+<% else %>
+	<%= link_to 'Login', new_user_session_path %>
+	<%=	link_to 'Sign up', new_user_registration_path %>
+<% end %>
+
+<div id="tabs">
+		<ul>
+        <li><a href="//www.winehq.org/">WineHQ</a></li>
+        <li><a href="http://wiki.winehq.org/">Wiki</a></li>
+        <li class="s"><%= link_to "AppDB", :root %></li>
+        <li><a href="//bugs.winehq.org/">Bugzilla</a></li>
+        <li><a href="//forum.winehq.org/">Forums</a></li>
+    </ul>
+</div>
+
+<div id="main_content">
+
+  <div class="rbox">
+  <b class="rtop"><b class="r1"></b><b class="r2"></b><b class="r3"></b><b class="r4"></b></b>
+    <div class="content" style="padding: 20px 20px 10px 80px">
+    <!-- Start Content -->
+
+		<p class="notice"><%= notice %></p>
+		<p class="alert"><%= alert %></p>
+
 <%= yield %>
+
+    </div>
+  <b class="rbottom"><b class="r4"></b><b class="r3"></b><b class="r2"></b><b class="r1"></b></b>
+  </div>
+
+</div>
+
+<div id="footer">
+    Hosted By
+    <%= link_to image_tag("cw_logo_sm.png", {alt: "CodeWeavers", title: "CodeWeavers - Run Windows applications and games on Mac and Linux"}), "http://www.codeweavers.com", { target: "_blank" } %>
+</div>
+
+
 
 </body>
 

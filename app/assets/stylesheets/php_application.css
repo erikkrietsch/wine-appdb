@@ -1,0 +1,89 @@
+;/***********************************************************************/
+/* The following styles are used for application description and notes */
+/***********************************************************************/
+
+.title { font-weight: bold; }
+
+.subtitle { text-decoration: underline; font-style: italic; }
+
+/* Define <code> to behave like "generic" quoted software input and output. */
+.code { background-color: #efefef; padding: 0.5em; border-width: 1pt;
+        border-style: solid; border-color: #c0c0c0; white-space: -moz-pre-wrap;
+        font-family: monospace; }
+
+/* bash shell command prompt input and output */
+.quote_terminal { background-color: #f0ece6; padding: 0.5em; border-width: 1pt;
+                  border-style: solid; border-color: #c0c0c0; white-space: -moz-pre-wrap;
+                  font-family: monospace; }
+
+/* graphical user interface input and output */
+.quote_window { background-color: #c0e0f0; padding: 0.5em; border-width: 1pt;
+                border-style: solid; border-color: #c0c0c0; white-space: -moz-pre-wrap;
+                font-family: monospace; }
+
+/*
+  Wine registry modification.
+  Modifying the registry is a somewhat common wine task,  and other How To's already
+  uniquely quote registry modifications, so here is a CSS to formalize this behavior.
+  In practice this tag is not necessary, since, like almost everything else, registry
+  edits are done either via a command prompt (regedit /C foo.reg (once implemented))
+  or via the regedit graphical user interface.
+*/
+.quote_registry { background-color: #c6ffc6; padding: 0.5em; border-width: 1pt;
+                  border-style: solid; border-color: #c0c0c0; white-space: -moz-pre-wrap;
+                  font-family: monospace; }
+
+p {
+      font-family: "bitstream vera sans", "verdana", "arial", "helvetica", sans-serif;
+      font-size: 12px;
+  }
+thead.historyHeader { font-weight: bold }
+
+table.historyTable { border: 1px;
+                     font-family: "bitstream vera sans", "verdana", "arial", "helvetica", sans-serif;
+                     font-size: 12px; }
+
+td.platinum         { background-color: #ECECEC; }
+td.gold             { background-color: #fff600; }
+td.silver           { background-color: silver;  }
+td.bronze           { background-color: #fcba0a; }
+td.garbage          { background-color: #999966; }
+
+td.platinum         { background-color: #ECECEC; }
+tr.gold             { background-color: #fff600; }
+tr.silver           { background-color: silver;  }
+tr.bronze           { background-color: #fcba0a; }
+tr.garbage          { background-color: #999966; }
+tr.warning          { background-color: #ff3333; } /* novascotia salmon */
+tr.howto            { background-color: green;   }
+tr.defaultnote      { background-color: #0066CC; } /* mid-light blue */
+tr.notetitle	    { background-color: #cccccc; font-weight: bold; }
+/* classes for the version info pane */
+/* version info pane is the right hand pane at the top of the version page */
+div.version_info_pane p { margin:0px; }
+div.info_container { margin:6px; border: 1px solid; }
+div.info_contents { padding:10px; background-color: #eee; }
+div.title_class { font-weight: bold; border-bottom: 1px solid; padding: 4px;
+                  font-size: 140%; background-color: #ddd; }
+
+div.warning          { display: inline; background-color: #ff3333; } /* novascotia salmon */
+div.howto            { display: inline; background-color: green;   }
+div.defaultnote      { display: inline; background-color: #0066CC; } /* mid-light blue */
+
+/* Classes for a note box */
+div.note_container { margin:6px; border: 1px solid; }
+div.note_body { padding: 10px; background-color: #ffe732; }
+div.note_title { font-weight: bold; border-bottom: 1px solid; padding: 4px;
+                 font-size: 140%; background-color: #ffc004; }
+
+/* Boxes for session notes, as used by addmsg() */
+div.session_note { border: 1px solid; margin-bottom: 5px;}
+
+/* classes for the main page */
+div.rating_header { padding: 8px; }
+div.rating_title { padding-bottom: 4px; font-weight: bold; font-size: 160%; }
+div.topx_style { padding:7px; margin:6px; border:2px solid; }
+div.imgarea { text-align:center;    text-align:center;
+    margin-top:0px;
+    margin-bottom:0px;
+    padding:0px;}

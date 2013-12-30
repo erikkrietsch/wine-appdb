@@ -4,6 +4,9 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable, :lockable,
          :confirmable, :recoverable, :rememberable, :trackable, 
          :validatable
+  has_many :votes
+  has_many :wiki_entries
+  
   def create 
     User.create(user_params)
   end

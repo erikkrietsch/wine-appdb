@@ -11,28 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131205030945) do
+ActiveRecord::Schema.define(version: 20131228180051) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "bug_reports", force: true do |t|
-    t.integer  "refid"
-    t.string   "title"
-    t.string   "description"
-    t.string   "status"
-    t.string   "resolution"
+    t.integer  "bugzilla_bug_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
-
-  create_table "bugs", force: true do |t|
-    t.integer  "reference_id", null: false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "bugs", ["reference_id"], name: "index_bugs_on_reference_id", using: :btree
 
   create_table "developers", force: true do |t|
     t.string   "name"
@@ -81,13 +69,22 @@ ActiveRecord::Schema.define(version: 20131205030945) do
   create_table "wiki_entries", force: true do |t|
     t.integer  "wikiable_id"
     t.string   "wikiable_type"
+    t.integer  "user_id"
+    t.text     "content"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "wine_app_problems", force: true do |t|
+    t.string   "versions"
+    t.integer  "wine_app_id"
+    t.integer  "bug_report_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "wine_apps", force: true do |t|
     t.string "name"
-    t.string "description"
   end
 
   add_index "wine_apps", ["name"], name: "index_wine_apps_on_name", using: :btree

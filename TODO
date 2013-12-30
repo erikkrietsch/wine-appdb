@@ -1,14 +1,17 @@
 # TODO
 
-associate bug reports with Apps (:has_many_through => )
-populate bug reports table with mock data
+show wiki (description/instructions) history to logged in user
 add screenshots to an App
-add TestResults model..?
 clean up App show view
-create application views
-implement Map(Reduce()) jQuery lookup for searching
+integrate Hallo/Markdown
+
+associate bug reports with Apps (:has_many_through => WineAppProblems )
+populate bug reports table with mock data
+
 create custom devise views
 add landing page
 allow user voting via ajax
 allow user subscriptions to App data for updates
+identify votes as coming from non-registered users, don't allow those users to vote more than once
+implement Map(Reduce()) jQuery lookup for searching
 

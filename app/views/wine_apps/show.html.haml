@@ -1,9 +1,13 @@
-%p#notice= notice
+%h3= @wine_app.name
 
 %ul
-  %li= @wine_app.name
-  %li= @wine_app.description
+  %li 
+    %b Description
+    =@wine_app.description + " [ History ]"
 
-= link_to 'Edit', edit_wine_app_path(@wine_app)
-\|
-= link_to 'Listing', wine_apps_path
+- if user_signed_in?
+  = link_to 'Edit', edit_wine_app_path(@wine_app)
+  \|
+  = link_to ' X ', @wine_app, :method => :delete, :data => { :confirm => 'Are you sure?' }
+  \|
+= link_to 'App List', wine_apps_path

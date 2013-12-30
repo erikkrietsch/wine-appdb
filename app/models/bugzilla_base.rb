@@ -1,4 +1,4 @@
 class BugzillaBase < ActiveRecord::Base
   self.abstract_class = true
-  establish_connection "bugzilla_#{RAILS_ENV}"
+  establish_connection "bugzilla_#{Rails.env}"
 end

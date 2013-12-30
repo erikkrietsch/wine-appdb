@@ -8,6 +8,8 @@ class Vote < ActiveRecord::Base
     Vote.new(vote_params)
   end
 
+  # get user's IP via request.remote_ip
+
 
   private 
     def vote_params

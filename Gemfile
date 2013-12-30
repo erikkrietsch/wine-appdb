@@ -40,6 +40,21 @@ end
 group :development, :test do
   gem 'rspec-rails'
   gem 'factory_girl_rails', require: false
+  gem 'pry'
+end
+
+group :test do
+  gem 'database_cleaner'
+  gem 'email_spec'
+  gem 'cucumber-rails', require: false
+  gem 'launchy' 
+  gem 'capybara'
+end
+
+group :development do
+  gem 'quiet_assets'
+  gem 'better_errors'
+  gem 'binding_of_caller'
 end
 
 group :production do

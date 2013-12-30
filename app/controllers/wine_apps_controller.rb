@@ -3,6 +3,7 @@ class WineAppsController < ApplicationController
   # expose(:wine_apps) { WineApp.order(:name) }
   # expose(:wine_app)
   before_action :set_wine_app, only: [:update, :show, :edit, :destroy]
+  before_action :authenticate_user!, only: [:update, :edit, :destroy]
 
 
   def index
@@ -24,12 +25,12 @@ class WineAppsController < ApplicationController
   # POST /wine_apps.json
   def create
     @wine_app = WineApp.new(wine_app_params)
-
+    set_wine_app_description
     respond_to do |format|
       if @wine_app.save
         # unless wine_app.developer 
         #   format.html { redirect_to }
-        format.html { redirect_to @wine_app, notice: 'Wine app was successfully created.' }
+        format.html { redirect_to @wine_app, notice: 'App was successfully created.' }
         format.json { render action: 'show', status: :created, location: @wine_app }
       else
         format.html { render action: 'new' }
@@ -41,9 +42,10 @@ class WineAppsController < ApplicationController
   # PATCH/PUT /wine_apps/1
   # PATCH/PUT /wine_apps/1.json
   def update
+    set_wine_app_description
     respond_to do |format|
       if @wine_app.update(wine_app_params)
-        format.html { redirect_to @wine_app, notice: 'Wine app was successfully updated.' }
+        format.html { redirect_to @wine_app, notice: 'App was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
@@ -65,11 +67,24 @@ class WineAppsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_wine_app
-      @wine_app = WineApp.find(params[:id])
+      begin
+        @wine_app = WineApp.find(params[:id])
+      rescue PG::NumericValueOutOfRange, ActiveRecord::RecordNotFound
+        redirect_to wine_apps_url, notice: "App not found."
+      end
+    end
+
+    def set_wine_app_description
+      if @wine_app.description != params[:wine_app][:description]
+        description = WikiEntry.new
+        description.content = params[:wine_app][:description]
+        description.user = current_user
+        @wine_app.descriptions << description
+      end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def wine_app_params
-      params.require(:wine_app).permit([:name, :description])
+      params.require(:wine_app).permit([:name])
     end
 end
