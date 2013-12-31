@@ -1,4 +1,6 @@
 WineAppdb::Application.routes.draw do
+  resources :screenshots
+
   get "user/prefs"
   devise_for :users
   # The priority is based upon order of creation: first created -> highest priority.
@@ -15,10 +17,11 @@ WineAppdb::Application.routes.draw do
 
   resources :wine_apps do
     resources :developers
+    resources :wiki_entries
   end
 
   resources :developers
-  
+
   # set the root to the wine_apps listing
   root 'wine_apps#index'
   

@@ -3,12 +3,16 @@
   %br
   = f.text_field :name 
   %br
+  Screenshot
+  %br
+  =file_field_tag :screenshot
+  %br
   Description
   %br
   - if @wine_app.description
     = f.text_area :description, size: "60x12"
   - else
-    = text_area :wine_app, :description, size: "60x12"
+    = text_area :wine_app, :description, size: "60x12"  
   - if @wine_app.errors.any?
     #error_explanation
       %h2= "#{pluralize(@wine_app.errors.count, "error")} prevented this App from being saved:"

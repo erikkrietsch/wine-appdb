@@ -32,6 +32,9 @@ gem 'turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 1.2'
 
+# Paperclip to handle screenshot uploads
+gem 'paperclip'
+
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false
@@ -55,6 +58,8 @@ group :development do
   gem 'quiet_assets'
   gem 'better_errors'
   gem 'binding_of_caller'
+  # AWS for storing uploads, should be temporary, for heroku/local dev.
+  gem 'aws-sdk'
 end
 
 group :production do

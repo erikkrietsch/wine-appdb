@@ -3,7 +3,14 @@
 %ul
   %li 
     %b Description
-    =@wine_app.description + " [ History ]"
+    =@wine_app.description
+    [ 
+    =link_to("History", wine_app_wiki_entries_path(@wine_app)) 
+    ]
+
+%ul
+  -@wine_app.screenshots.each do |ss|
+    %li= ss.url(:thumb)
 
 - if user_signed_in?
   = link_to 'Edit', edit_wine_app_path(@wine_app)

@@ -1,0 +1,12 @@
+%h3= @wine_app.name
+
+%ul
+  %li 
+    %b Descriptions
+    -@wine_app.description.each do |de|
+      =@wine_app.description 
+      [ 
+      =link_to("History", wine_app_wiki_entry_index_path(@wine_app)) 
+      ]
+
+= link_to 'App List', wine_apps_path

@@ -2,7 +2,7 @@ class WineAppsController < ApplicationController
   # respond_to(:html)
   # expose(:wine_apps) { WineApp.order(:name) }
   # expose(:wine_app)
-  before_action :set_wine_app, only: [:update, :show, :edit, :destroy]
+  before_action :set_wine_app, only: [:update, :show, :edit, :destroy, :description_history]
   before_action :authenticate_user!, only: [:update, :edit, :destroy]
 
 
@@ -20,12 +20,16 @@ class WineAppsController < ApplicationController
     @wine_app = WineApp.new
   end
 
+  def description_history
+
+  end
 
   # POST /wine_apps
   # POST /wine_apps.json
   def create
     @wine_app = WineApp.new(wine_app_params)
     set_wine_app_description
+    set_wine_app_screenshot
     respond_to do |format|
       if @wine_app.save
         # unless wine_app.developer 
@@ -43,6 +47,7 @@ class WineAppsController < ApplicationController
   # PATCH/PUT /wine_apps/1.json
   def update
     set_wine_app_description
+    set_wine_app_screenshot
     respond_to do |format|
       if @wine_app.update(wine_app_params)
         format.html { redirect_to @wine_app, notice: 'App was successfully updated.' }
@@ -72,6 +77,13 @@ class WineAppsController < ApplicationController
       rescue PG::NumericValueOutOfRange, ActiveRecord::RecordNotFound
         redirect_to wine_apps_url, notice: "App not found."
       end
+    end
+
+    def set_wine_app_screenshot
+      screenshot = Screenshot.new
+      screenshot.image = params[:screenshot]
+      screenshot.user = current_user
+      @wine_app.screenshots << screenshot
     end
 
     def set_wine_app_description

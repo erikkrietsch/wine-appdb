@@ -5,6 +5,7 @@ class WineApp < ActiveRecord::Base
   has_many :descriptions, class_name: "WikiEntry", as: :wikiable
   has_many :install_instructions, class_name: "WikiEntry", as: :wikiable
   has_many :wine_instructions, class_name: "WikiEntry", as: :wikiable
+  has_many :screenshots
   validates :name, presence: true
   def create
     WineApp.create(wineapp_params)

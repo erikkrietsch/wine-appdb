@@ -1,0 +1,17 @@
+%h1 Listing screenshots
+
+%table
+  %tr
+    %th
+    %th
+    %th
+
+  - @screenshots.each do |screenshot|
+    %tr
+      %td= link_to 'Show', screenshot
+      %td= link_to 'Edit', edit_screenshot_path(screenshot)
+      %td= link_to 'Destroy', screenshot, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Screenshot', new_screenshot_path

@@ -1,0 +1,13 @@
+%h3 Wiki Entries
+
+%ul
+  -@wiki_entries.each do |entry|
+    %li 
+      =entry.content 
+      =entry.updated_at
+      =entry.user
+
+- if user_signed_in?
+  = link_to ' X ', @wiki_entry, :method => :delete, :data => { :confirm => 'Are you sure?' }
+  \|
+= link_to 'App List', wine_apps_path
