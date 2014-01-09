@@ -10,7 +10,7 @@
 
 %ul
   -@wine_app.screenshots.each do |ss|
-    %li= ss.url(:thumb)
+    %li= image_tag ss.image.url(:thumb)
 
 - if user_signed_in?
   = link_to 'Edit', edit_wine_app_path(@wine_app)

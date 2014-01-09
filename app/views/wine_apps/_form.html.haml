@@ -1,4 +1,4 @@
-= form_for @wine_app do |f|
+= form_for @wine_app, html: { multipart: true } do |f|
   Name
   %br
   = f.text_field :name 

@@ -25,3 +25,4 @@ notes.txt
 /spec/tmp/*
 .project
 config/initializers/secret_token.rb
+config/aws.yml

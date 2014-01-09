@@ -1,9 +1,10 @@
 # TODO
 
 show wiki (description/instructions) history to logged in user
-add screenshots to an App
+clean up app screenshots view
 clean up App show view
 integrate Hallo/Markdown
+allow user voting
 
 associate bug reports with Apps (:has_many_through => WineAppProblems )
 populate bug reports table with mock data

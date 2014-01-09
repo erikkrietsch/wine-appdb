@@ -31,17 +31,19 @@ WineAppdb::Application.configure do
   # The port 1025 thing is for mailcatcher.
   config.action_mailer.default_url_options = { :host => 'localhost:3000' }
   config.action_mailer.delivery_method = :smtp
-  config.action_mailer.smtp_settings = {:address => "localhost", :port => 1025}
+  config.action_mailer.smtp_settings = {address: "localhost", port: 1025}
 
   # peep dis: https://devcenter.heroku.com/articles/paperclip-s3
-  # environment variables set in initializers/aws.rb
+  # environment variables set in config/aws.yml
   config.paperclip_defaults = {
     :storage => :s3,
-    :s3_credentials => {
-      :bucket => ENV['S3_BUCKET_NAME'],
-      :access_key_id => ENV['AWS_ACCESS_KEY_ID'],
-      :secret_access_key => ENV['AWS_SECRET_ACCESS_KEY']
-    }
+    :s3_protocol => "http"
+    # s3_credentials: "../aws.yml"
+    # :s3_credentials => {
+    #   :bucket => "appdb_screenshots",
+    #   :access_key_id => ENV['AWS_ACCESS_KEY_ID'],
+    #   :secret_access_key => ENV['AWS_SECRET_ACCESS_KEY']
+    # }
   }
 
 end
