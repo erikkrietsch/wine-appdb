@@ -14,3 +14,6 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+// Take this out and replace with specific components before launching prod site.
+//= require jquery.ui.all
+//= require hallo

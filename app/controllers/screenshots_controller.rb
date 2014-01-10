@@ -10,6 +10,7 @@ class ScreenshotsController < ApplicationController
   # GET /screenshots/1
   # GET /screenshots/1.json
   def show
+    find_wine_app
   end
 
   # GET /screenshots/new
@@ -70,5 +71,9 @@ class ScreenshotsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def screenshot_params
       params[:screenshot]
+    end
+
+    def find_wine_app
+      @wine_app = WineApp.find(params[:wine_app_id])
     end
 end

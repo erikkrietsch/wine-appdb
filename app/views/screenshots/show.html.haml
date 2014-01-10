@@ -1,6 +1,12 @@
 %p#notice= notice
 
+%center
+  = image_tag @screenshot.image
+  %br
+  Uploaded:
+  = @screenshot.created_at
+  by: 
+  = @screenshot.user.email
 
-= link_to 'Edit', edit_screenshot_path(@screenshot)
-\|
-= link_to 'Back', screenshots_path
+
+= link_to 'Back', @wine_app

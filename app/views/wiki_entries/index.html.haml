@@ -1,13 +1,18 @@
-%h3 Wiki Entries
+%h3= @page_title
 
 %ul
   -@wiki_entries.each do |entry|
     %li 
-      =entry.content 
+      =truncate entry.content, length: 30, separator: /\w/, omission: "..."
       =entry.updated_at
-      =entry.user
+      - if entry.user
+        = entry.user.email 
+      - else
+        %i &lt;User not found&gt;
 
+= link_to "Back", @wikiable
 - if user_signed_in?
+  \|
   = link_to ' X ', @wiki_entry, :method => :delete, :data => { :confirm => 'Are you sure?' }
   \|
 = link_to 'App List', wine_apps_path

@@ -13,11 +13,16 @@ WineAppdb::Application.routes.draw do
   #   get 'products/:id' => 'catalog#view'
 
   # alias the wine_apps controller
-  resources :apps, controller: :wine_apps, as: :wine_apps
+  resources :apps, controller: :wine_apps, as: :wine_apps do
 
-  resources :wine_apps do
-    resources :developers
-    resources :wiki_entries
+  # resources :wine_apps do
+    resource :developer
+    resources :descriptions, controller: :wiki_entries, as: :wiki_entries
+    resources :install_instructions, controller: :wiki_entries, as: :wiki_entries
+    resources :wine_instructions, controller: :wiki_entries, as: :wiki_entries
+    resources :screenshots
+    post "vote/:vote_type/:value", to: "votes#create", as: :create_vote
+    # get "vote", to: "votes#index", as: :vote_index
   end
 
   resources :developers

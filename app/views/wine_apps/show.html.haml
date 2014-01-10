@@ -2,16 +2,32 @@
 
 %ul
   %li 
+    %b Ease of Use
+    Vote: 
+    -5.times do |i|
+      =link_to(i+1, wine_app_create_vote_path(@wine_app, "simplicity", i+1), {method: :post})
+
+  %li 
+    %b Quality
+    Vote: 
+    -5.times do |i|
+      =link_to(i+1, wine_app_create_vote_path(@wine_app, "quality", i+1), {method: :post})
+  %br
+  %li
     %b Description
-    =@wine_app.description
+    %p#wiki
+      =@wine_app.description
+      :javascript
+        jQuery("p").hallo();
     [ 
     =link_to("History", wine_app_wiki_entries_path(@wine_app)) 
     ]
-
-%ul
-  -@wine_app.screenshots.each do |ss|
-    %li= image_tag ss.image.url(:thumb)
-
+  - if @wine_app.screenshots.count > 0
+    %li 
+      %b Screenshots
+      %ul
+        -@wine_app.screenshots.each do |ss|
+          %li= link_to image_tag(ss.image.url(:thumb)), wine_app_screenshot_path(@wine_app, ss)
 - if user_signed_in?
   = link_to 'Edit', edit_wine_app_path(@wine_app)
   \|

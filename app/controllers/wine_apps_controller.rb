@@ -20,10 +20,6 @@ class WineAppsController < ApplicationController
     @wine_app = WineApp.new
   end
 
-  def description_history
-
-  end
-
   # POST /wine_apps
   # POST /wine_apps.json
   def create
@@ -80,6 +76,7 @@ class WineAppsController < ApplicationController
     end
 
     def set_wine_app_screenshot
+      return unless params[:screenshot]
       screenshot = Screenshot.new
       screenshot.image = params[:screenshot]
       screenshot.user = current_user

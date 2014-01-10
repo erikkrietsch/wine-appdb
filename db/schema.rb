@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131231044432) do
+ActiveRecord::Schema.define(version: 20140110032305) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -75,7 +75,14 @@ ActiveRecord::Schema.define(version: 20131231044432) do
     t.integer  "wine_app_id", null: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "vote_type"
+    t.string   "ip_address"
   end
+
+  add_index "votes", ["ip_address"], name: "index_votes_on_ip_address", using: :btree
+  add_index "votes", ["user_id"], name: "index_votes_on_user_id", using: :btree
+  add_index "votes", ["vote_type"], name: "index_votes_on_vote_type", using: :btree
+  add_index "votes", ["wine_app_id"], name: "index_votes_on_wine_app_id", using: :btree
 
   create_table "wiki_entries", force: true do |t|
     t.integer  "wikiable_id"
