@@ -1,4 +1,6 @@
 WineAppdb::Application.routes.draw do
+  get "static/index"
+  get "static/about"
   resources :screenshots
 
   get "user/prefs"
@@ -27,8 +29,8 @@ WineAppdb::Application.routes.draw do
 
   resources :developers
 
-  # set the root to the wine_apps listing
-  root 'wine_apps#index'
+  # set the root to the landing page
+  root 'static#index'
   
   get "prefs", to: "user#show"
 

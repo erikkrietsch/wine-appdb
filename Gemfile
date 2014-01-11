@@ -30,6 +30,9 @@ gem 'jquery-ui-themes'
 gem 'font-awesome-rails'
 gem 'hallo'
 
+#use the Facebook React library
+gem 'react-rails'
+
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
 

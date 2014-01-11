@@ -1,0 +1,21 @@
+%h1 AppDB
+%p
+  Welcome to the Wine AppDB.
+  %br
+  %br
+  - if not user_signed_in? 
+    Unregistered users may
+    = link_to("create a new account.", new_user_registration_path)
+    %br
+    %br
+    \- OR -
+    %br
+    %br
+    You can 
+    = link_to("sign in.", new_user_session_path) 
+  - else
+    Welcome back,
+    = current_user.email
+%br
+%h2
+  = link_to "Apps", wine_apps_path
