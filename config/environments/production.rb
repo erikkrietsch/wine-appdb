@@ -83,4 +83,19 @@ WineAppdb::Application.configure do
     :storage => :s3
   }
 
+
+  # This is as described for Devise minimum configuration.
+  # The port 1025 thing is for mailcatcher.
+  config.action_mailer.default_url_options = { :host => 'localhost:3000' }
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    address:              "smtp.gmail.com",  
+    port:                 587,  
+    domain:               "wine-appdb.heroku.com",  
+    user_name:            ENV['GMAIL_USERNAME'],  
+    password:             ENV['GMAIL_PASSWD'],  
+    authentication:       "plain",  
+    enable_starttls_auto: true  
+}  
+
 end
