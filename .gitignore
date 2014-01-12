@@ -24,5 +24,7 @@ notes.txt
 /log/*
 /spec/tmp/*
 .project
-config/initializers/secret_token.rb
 config/aws.yml
+
+# Ignore application configuration
+/config/application.yml
