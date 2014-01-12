@@ -69,12 +69,15 @@ group :development do
   gem 'quiet_assets'
   gem 'better_errors'
   gem 'binding_of_caller'
-  # AWS for storing uploads, should be temporary, for heroku/local dev.
-  gem 'aws-sdk'
 end
 
 group :production do
   gem 'rails_12factor'
+end
+
+group :production, :development, :test do
+    # AWS for storing uploads, should be temporary, for heroku/local dev.
+  gem 'aws-sdk'
 end
 
 # Use ActiveModel has_secure_password
