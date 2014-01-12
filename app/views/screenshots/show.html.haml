@@ -6,7 +6,11 @@
   Uploaded:
   = @screenshot.created_at
   by: 
-  = @screenshot.user.email
+  -if @screenshot.user 
+    = @screenshot.user.email
+  -else
+    %i 
+      &lt;Account Deleted&gt;
 
 
 = link_to 'Back', @wine_app
