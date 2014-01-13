@@ -2,7 +2,7 @@
 BODY                {
                      background-color: #000000;
                      color: #000000;
-                     background-image: url('bg.jpg');
+                     background-image: image-url('bg.jpg');
                      background-repeat: no-repeat;
                      font-family: "bitstream vera sans", "verdana", "arial", "helvetica", sans-serif;
                      margin: 0;
@@ -78,12 +78,12 @@ BODY                {
                      margin: 0px 2px 0px 2px;
                      padding: 0;
                      text-align: center;
-                     background-image: url('tab_u.png');
+                     background-image: image-url('tab_u.png');
                      background-repeat: no-repeat;
                     }
-#tabs LI.s          { background-image: url('tab_s.png'); }
+#tabs LI.s          { background-image: image-url('tab_s.png'); }
 #tabs LI.s A        { font-weight: bold; }
-#tabs LI:hover      { background-image: url('tab_h.png'); }
+#tabs LI:hover      { background-image: image-url('tab_h.png'); }
 #tabs A             {
                      display: block;
                      width: 108px;
@@ -112,7 +112,7 @@ BODY                {
                      width: 156px;
                      margin: 0;
                      padding: 5px 0 0 0;
-                     background-image: url('side_menu_bg.png');
+                     background-image: image-url('side_menu_bg.png');
                      background-repeat: repeat-y;
                      font-size: 10px;
                      color: white;
@@ -122,7 +122,7 @@ BODY                {
                      height: 33px;
                      margin: 0;
                      padding: 0;
-                     background-image: url('side_menu_top.png');
+                     background-image: image-url('side_menu_top.png');
                      background-repeat: no-repeat;
                      font-weight: bold;
                      font-size: 10px;
@@ -132,7 +132,7 @@ BODY                {
                      height: 16px;
                      margin: 0;
                      padding: 0;
-                     background-image: url('side_menu_bot.png');
+                     background-image: image-url('side_menu_bot.png');
                      background-repeat: no-repeat;
                     }
 #sidebar A          { font-size: 10px; color: white; text-decoration: none; }
