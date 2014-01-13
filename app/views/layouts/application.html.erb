@@ -16,14 +16,18 @@
     <meta name="copyright" content="Copyright WineHQ.org All Rights Reserved.">
     <meta name="language" content="English">
     <meta name="revisit-after" content="1">
-    <script language="JavaScript" src="jquery.js" type="text/javascript"></script>
-    <script language="JavaScript" src="utils.js" type="text/javascript"></script>
+    <!-- // <script language="JavaScript" src="jquery.js" type="text/javascript"></script> -->
+    <!-- // <script language="JavaScript" src="utils.js" type="text/javascript"></script> -->
+    <%= javascript_include_tag "utils.php.js" %>
     <script type="text/javascript" 
     src="//ajax.googleapis.com/ajax/libs/prototype/1.6.0.2/prototype.js"></script>
-    <script src="scripts.js" type="text/javascript"></script>
-    <link rel="icon" type="image/png" href="images/winehq_logo_16.png">
-    <link rel="shortcut icon" type="image/png" href="images/winehq_logo_16.png">
-    <link title="AppDB" type="application/opensearchdescription+xml" rel="search" href="opensearch.xml">
+    <!-- // <script src="scripts.js" type="text/javascript"></script> -->
+    <%= javascript_include_tag "scripts.php.js" %>
+    <!-- <link rel="icon" type="image/png" href="images/winehq_logo_16.png"> -->
+    <%= favicon_link_tag "winehq_logo_16.png", rel: "icon", type: "image/png" %>
+    <!-- <link rel="shortcut icon" type="image/png" href="images/winehq_logo_16.png"> -->
+    <%= favicon_link_tag "winehq_logo_16.png", rel: "shortcut icon", type: "image/png" %>
+    <!-- <link title="AppDB" type="application/opensearchdescription+xml" rel="search" href="opensearch.xml"> -->
 </head>
 <body>
 
