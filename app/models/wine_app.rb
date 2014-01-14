@@ -7,6 +7,7 @@ class WineApp < ActiveRecord::Base
   has_many :wine_instructions, class_name: "WikiEntry", as: :wikiable
   has_many :screenshots
   validates :name, presence: true
+  accepts_nested_attributes_for :screenshots
   def create
     WineApp.create(wineapp_params)
   end
@@ -18,6 +19,6 @@ class WineApp < ActiveRecord::Base
   private
 
     def wineapp_params
-      params.require(:wine_app).permit(:name, :description)
+      params.require(:wine_app).permit(:name, :description, screenshots_attributes: [:wine_app_id, :title, :image])
     end
 end

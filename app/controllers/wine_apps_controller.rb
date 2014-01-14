@@ -79,6 +79,7 @@ class WineAppsController < ApplicationController
       return unless params[:screenshot]
       screenshot = Screenshot.new
       screenshot.image = params[:screenshot]
+      screenshot.title = params[:screenshot_title]
       screenshot.user = current_user
       @wine_app.screenshots << screenshot
     end

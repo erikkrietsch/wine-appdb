@@ -18,10 +18,11 @@
     [ 
     =link_to("History", wine_app_wiki_entries_path(@wine_app)) 
     ]
-    %p#wiki
-      =@wine_app.description
-      :javascript
-        jQuery("p").hallo();
+    #wiki
+      :markdown
+        #{@wine_app.description}
+    :javascript
+      jQuery("#wiki").hallo();
     
   - if @wine_app.screenshots.count > 0
     %li 

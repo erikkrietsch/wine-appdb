@@ -8,10 +8,9 @@
 
   - @screenshots.each do |screenshot|
     %tr
-      %td= link_to 'Show', screenshot
-      %td= link_to 'Edit', edit_screenshot_path(screenshot)
-      %td= link_to 'Destroy', screenshot, :method => :delete, :data => { :confirm => 'Are you sure?' }
+      %td= link_to image_tag(screenshot.image.url(:thumb)), wine_app_screenshot_path(@wine_app, screenshot)
+      %td= link_to 'Edit', edit_wine_app_screenshot_path(@wine_app, screenshot)
+      - if can_delete_screenshot? screenshot
+        %td= link_to 'Destroy', screenshot, :method => :delete, :data => { :confirm => 'Are you sure?' }
 
 %br
-
-= link_to 'New Screenshot', new_screenshot_path

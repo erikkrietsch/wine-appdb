@@ -1,7 +1,6 @@
 class Screenshot < ActiveRecord::Base
   belongs_to :wine_app
   belongs_to :user
-
   has_attached_file :image, 
   bucket: "appdb_screenshots",
   styles: {
@@ -9,6 +8,8 @@ class Screenshot < ActiveRecord::Base
     square: "200x200#",
     medium: "300x300>"
   }
+  validates :title, presence: true
+  validates :image, presence: true
 
   def create
     Screenshot.create(:set_screenshot_params)
@@ -16,6 +17,6 @@ class Screenshot < ActiveRecord::Base
 
   private
     def set_screenshot_params
-      params.require(:screenshot).permit(:image)
+      params.require(:screenshot).permit(:image, :title, :user)
     end
 end

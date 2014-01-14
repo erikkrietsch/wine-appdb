@@ -1,10 +1,10 @@
 class ScreenshotsController < ApplicationController
   before_action :set_screenshot, only: [:show, :edit, :update, :destroy]
-
+  before_action :find_wine_app, only: [:show, :edit, :update, :index]
   # GET /screenshots
   # GET /screenshots.json
   def index
-    @screenshots = Screenshot.all
+    @screenshots = @wine_app.screenshots
   end
 
   # GET /screenshots/1
@@ -57,7 +57,7 @@ class ScreenshotsController < ApplicationController
   def destroy
     @screenshot.destroy
     respond_to do |format|
-      format.html { redirect_to screenshots_url }
+      format.html { redirect_to wine_app_path(@screenshot.wine_app_id) }
       format.json { head :no_content }
     end
   end

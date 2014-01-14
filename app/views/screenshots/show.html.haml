@@ -2,15 +2,22 @@
 
 %center
   = image_tag @screenshot.image
+  %p
+    = @screenshot.title
   %br
   Uploaded:
   = @screenshot.created_at
   by: 
-  -if @screenshot.user 
+  -if @screenshot.user
     = @screenshot.user.email
   -else
     %i 
       &lt;Account Removed&gt;
+  -if can_delete_screenshot? @screenshot
+    %p
+      [
+      = link_to 'Delete', @screenshot, :method => :delete, :data => { :confirm => 'Are you sure?' }
+      ]
 
 
 = link_to 'Back', @wine_app

@@ -6,6 +6,8 @@ clean up App show view
 integrate Hallo/Markdown
 allow user voting
 
+lock down screenshots#index
+
 associate bug reports with Apps (:has_many_through => WineAppProblems )
 populate bug reports table with mock data
 
