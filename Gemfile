@@ -27,6 +27,9 @@ gem 'figaro'
 # Redcarpet held my hand once on the bus to school.
 gem 'redcarpet'
 
+# Helping and hurting all at the same time. Used for easy access to Google's Chart API, for building voting charts.
+gem "google_visualr", "~> 2.1.0"
+
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 
@@ -38,7 +41,7 @@ gem 'font-awesome-rails'
 gem 'hallo'
 
 #use the Facebook React library
-gem 'react-rails'
+#gem 'react-rails'
 
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'

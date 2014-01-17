@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140114023321) do
+ActiveRecord::Schema.define(version: 20140117034528) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -71,18 +71,17 @@ ActiveRecord::Schema.define(version: 20140114023321) do
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
   create_table "votes", force: true do |t|
-    t.integer  "value"
     t.integer  "user_id"
-    t.integer  "wine_app_id", null: false
+    t.integer  "wine_app_id",      null: false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "vote_type"
     t.string   "ip_address"
+    t.integer  "quality_value"
+    t.integer  "difficulty_value"
   end
 
   add_index "votes", ["ip_address"], name: "index_votes_on_ip_address", using: :btree
   add_index "votes", ["user_id"], name: "index_votes_on_user_id", using: :btree
-  add_index "votes", ["vote_type"], name: "index_votes_on_vote_type", using: :btree
   add_index "votes", ["wine_app_id"], name: "index_votes_on_wine_app_id", using: :btree
 
   create_table "wiki_entries", force: true do |t|

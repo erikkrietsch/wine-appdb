@@ -2,10 +2,10 @@
 
 %ul
   %li 
-    %b Ease of Use
+    %b Difficulty
     Vote: 
     -5.times do |i|
-      =link_to(i+1, wine_app_create_vote_path(@wine_app, "simplicity", i+1), {method: :post})
+      =link_to(i+1, wine_app_create_vote_path(@wine_app, "difficulty", i+1), {method: :post})
 
   %li 
     %b Quality
@@ -13,6 +13,9 @@
     -5.times do |i|
       =link_to(i+1, wine_app_create_vote_path(@wine_app, "quality", i+1), {method: :post})
   %br
+  %li 
+    #vote_chart
+    = render_chart @vote_chart, "vote_chart" 
   %li
     %b Description
     [ 
@@ -20,10 +23,11 @@
     ]
     #wiki
       :markdown
-        #{@wine_app.description}
-    :javascript
-      jQuery("#wiki").hallo();
-    
+        #{ @wine_app.description }
+    -if user_signed_in? 
+      :javascript
+        jQuery("#wiki").hallo();
+      
   - if @wine_app.screenshots.count > 0
     %li 
       %b Screenshots
