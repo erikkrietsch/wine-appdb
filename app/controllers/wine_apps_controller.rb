@@ -135,7 +135,7 @@ class WineAppsController < ApplicationController
           color: "#3366CC"
         }], 
         hAxis: {
-          title: "Simplicity", 
+          title: "Difficulty", 
           minValue: 0, 
           maxValue: 5,
           textPosition: "none"
