@@ -23,7 +23,8 @@ WineAppdb::Application.routes.draw do
     resources :install_instructions, controller: :wiki_entries, as: :wiki_entries
     resources :wine_instructions, controller: :wiki_entries, as: :wiki_entries
     resources :screenshots
-    post "vote/:vote_type/:value", to: "votes#create", as: :create_vote
+    post "vote", to: "votes#create", as: :create_vote
+    patch "vote",  to: "votes#create", as: :update_vote
     # get "vote", to: "votes#index", as: :vote_index
   end
 

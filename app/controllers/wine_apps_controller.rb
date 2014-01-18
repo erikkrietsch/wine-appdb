@@ -12,7 +12,7 @@ class WineAppsController < ApplicationController
 
   def show
     build_scatterchart
-
+    @vote = @wine_app.votes.find_by(user_id: current_user) || Vote.new
   end
 
   def edit
@@ -137,13 +137,13 @@ class WineAppsController < ApplicationController
         hAxis: {
           title: "Difficulty", 
           minValue: 0, 
-          maxValue: 5,
+          maxValue: 1,
           textPosition: "none"
         },
         vAxis: {
           title: "Quality", 
           minValue: 0, 
-          maxValue: 5,
+          maxValue: 1,
           textPosition: "none"
         }, 
         animation: {

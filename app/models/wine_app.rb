@@ -19,6 +19,6 @@ class WineApp < ActiveRecord::Base
   private
 
     def wineapp_params
-      params.require(:wine_app).permit(:name, :description, screenshots_attributes: [:wine_app_id, :title, :image])
+      params.require(:wine_app).permit(:name, :description, screenshots_attributes: [:wine_app_id, :title, :image], vote:[:difficulty_value, :quality_value])
     end
 end

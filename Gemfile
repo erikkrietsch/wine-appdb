@@ -28,7 +28,7 @@ gem 'figaro'
 gem 'redcarpet'
 
 # Helping and hurting all at the same time. Used for easy access to Google's Chart API, for building voting charts.
-gem "google_visualr", "~> 2.1.0"
+gem 'google_visualr', '~> 2.1.0'
 
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
@@ -39,6 +39,9 @@ gem 'jquery-ui-rails'
 gem 'jquery-ui-themes'
 gem 'font-awesome-rails'
 gem 'hallo'
+
+# I'm making this decision consciously, and of my own volition.
+# gem 'twitter-bootstrap-rails'
 
 #use the Facebook React library
 #gem 'react-rails'
@@ -61,6 +64,7 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'factory_girl_rails', require: false
   gem 'pry'
+  gem 'seed-fu'
 end
 
 group :test do

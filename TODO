@@ -1,10 +1,10 @@
 # TODO
 
-show wiki (description/instructions) history to logged in user
-clean up app screenshots view
-clean up App show view
+change votes to be matched pair via sliders and submit button
+perform user voting via ajax
 integrate Hallo/Markdown
-allow user voting
+clean up app screenshots view; add gallery
+clean up App show view
 
 lock down screenshots#index
 
@@ -12,9 +12,8 @@ associate bug reports with Apps (:has_many_through => WineAppProblems )
 populate bug reports table with mock data
 
 create custom devise views
-add landing page
-allow user voting via ajax
+spruce up landing page
+
 allow user subscriptions to App data for updates
-identify votes as coming from non-registered users, don't allow those users to vote more than once
 implement Map(Reduce()) jQuery lookup for searching
 

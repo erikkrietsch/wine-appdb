@@ -1,17 +1,17 @@
 %h3= @wine_app.name
 
 %ul
-  %li 
-    %b Difficulty
-    Vote: 
-    -5.times do |i|
-      =link_to(i+1, wine_app_create_vote_path(@wine_app, "difficulty", i+1), {method: :post})
+  = form_for @vote, url: wine_app_create_vote_path(@wine_app), method: :post do |f|
+    / = f.hidden_field @wine_app
+    %li 
+      %b Difficulty
+      = f.range_field :difficulty_value, { min: 0.0, max: 1.0, step: 0.01 }
 
-  %li 
-    %b Quality
-    Vote: 
-    -5.times do |i|
-      =link_to(i+1, wine_app_create_vote_path(@wine_app, "quality", i+1), {method: :post})
+    %li 
+      %b Quality
+      = f.range_field :quality_value, { min: 0.0, max: 1.0, step: 0.01 }
+    = submit_tag "Vote"
+
   %br
   %li 
     #vote_chart

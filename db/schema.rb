@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140117034528) do
+ActiveRecord::Schema.define(version: 20140118033907) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -76,8 +76,8 @@ ActiveRecord::Schema.define(version: 20140117034528) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "ip_address"
-    t.integer  "quality_value"
-    t.integer  "difficulty_value"
+    t.decimal  "quality_value"
+    t.decimal  "difficulty_value"
   end
 
   add_index "votes", ["ip_address"], name: "index_votes_on_ip_address", using: :btree
