@@ -25,6 +25,7 @@ WineAppdb::Application.routes.draw do
     resources :screenshots
     post "vote", to: "votes#create", as: :create_vote
     patch "vote",  to: "votes#create", as: :update_vote
+    get "votes", to: "votes#index"
     # get "vote", to: "votes#index", as: :vote_index
   end
 

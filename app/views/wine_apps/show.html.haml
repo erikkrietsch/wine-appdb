@@ -3,6 +3,14 @@
   jQuery( document ).ready(function() {
     jQuery('form#voteForm').bind('ajax:success', function(evt, data, status, xhr){
       jQuery('#votealert').text('Done.');
+      setInterval(3000, function() { jQuery('#votealert').text(''); });
+      jQuery.get(
+        "#{wine_app_votes_path(@wine_app)}",
+        function(data, textStatus, jqXHR) { 
+          console.log(data);
+        },
+        "json"
+      );
     });
     jQuery('#voteForm').ajaxError(function(xhr, status, error) {
       jQuery('#votealert').text('Failed.');

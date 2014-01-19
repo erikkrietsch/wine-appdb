@@ -1,5 +1,7 @@
 class VotesController < ApplicationController
   before_action :find_vote, only: [:create]
+  before_action :find_wineapp, only: [:index]
+  
   def create
     @vote ||= Vote.new
     @vote.quality_value = params[:vote][:quality_value]
@@ -15,13 +17,20 @@ class VotesController < ApplicationController
     end
   end
 
+  def index
+    respond_to do |format|
+      format.html { redirect_to @wine_app }
+      format.json { @votes = @wine_app.votes }
+    end
+  end
+
   private
     def vote_params
       params[:vote]
     end
 
     def find_vote
-      @wine_app = WineApp.find(params[:wine_app_id])
+      find_wineapp
       # common_args = { wine_app_id: params[:wine_app_id], vote_type: params[:vote_type] }
       if user_signed_in?
         @vote = @wine_app.votes.find_by(user_id: current_user)
@@ -31,4 +40,9 @@ class VotesController < ApplicationController
         # @vote = Vote.all.where(common_args.merge({ user_id: nil, ip_address: request.remote_ip }) ).first
       end
     end
+
+    def find_wineapp
+      @wine_app = WineApp.find(params[:wine_app_id])
+    end
+
 end

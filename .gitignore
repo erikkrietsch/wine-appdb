@@ -28,3 +28,4 @@ config/aws.yml
 
 # Ignore application configuration
 /config/application.yml
+public/test/*
