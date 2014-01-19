@@ -1,8 +1,15 @@
 %h3= @wine_app.name
-
+:javascript
+  jQuery( document ).ready(function() {
+    jQuery('form#voteForm').bind('ajax:success', function(evt, data, status, xhr){
+      jQuery('#votealert').text('Done.');
+    });
+    jQuery('#voteForm').ajaxError(function(xhr, status, error) {
+      jQuery('#votealert').text('Failed.');
+    });
+  });
 %ul
-  = form_for @vote, url: wine_app_create_vote_path(@wine_app), method: :post do |f|
-    / = f.hidden_field @wine_app
+  = form_for @vote, url: wine_app_create_vote_path(@wine_app), html: { id: "voteForm" }, update: { success: "response", failure: "error" },remote: true, method: :post do |f|
     %li 
       %b Difficulty
       = f.range_field :difficulty_value, { min: 0.0, max: 1.0, step: 0.01 }
@@ -11,6 +18,7 @@
       %b Quality
       = f.range_field :quality_value, { min: 0.0, max: 1.0, step: 0.01 }
     = submit_tag "Vote"
+    %p#votealert
 
   %br
   %li 

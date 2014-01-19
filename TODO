@@ -1,7 +1,11 @@
 # TODO
 
-change votes to be matched pair via sliders and submit button
+
+change vote values to use integers 1-100
 perform user voting via ajax
+add call to get votes json via ajax
+update vote chart after form submitted
+
 integrate Hallo/Markdown
 clean up app screenshots view; add gallery
 clean up App show view
