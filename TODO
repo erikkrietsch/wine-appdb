@@ -1,9 +1,5 @@
 # TODO
 
-
-change vote values to use integers 1-100
-perform user voting via ajax
-add call to get votes json via ajax
 update vote chart after form submitted
 
 integrate Hallo/Markdown

@@ -20,11 +20,11 @@
   = form_for @vote, url: wine_app_create_vote_path(@wine_app), html: { id: "voteForm" }, update: { success: "response", failure: "error" },remote: true, method: :post do |f|
     %li 
       %b Difficulty
-      = f.range_field :difficulty_value, { min: 0.0, max: 1.0, step: 0.01 }
+      = f.range_field :difficulty_value, { min: 0, max: 100, step: 1 }
 
     %li 
       %b Quality
-      = f.range_field :quality_value, { min: 0.0, max: 1.0, step: 0.01 }
+      = f.range_field :quality_value, { min: 0, max: 100, step: 1 }
     = submit_tag "Vote"
     %p#votealert
 

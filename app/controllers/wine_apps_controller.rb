@@ -107,22 +107,22 @@ class WineAppsController < ApplicationController
       blank_data.new_column('number', '3-6 Months')
       blank_data.new_column('number', '6+ Months')
 
-      @wine_app.votes.each do |v|
+      @wine_app.votes.recent.each do |v|
         @vote_data.add_row([v.difficulty_value, v.quality_value, nil, nil])
       end
 
-      # @wine_app.votes.old.each do |v|
-      #   @vote_data.add_row(v.difficulty_value, nil, v.quality_value, nil)
-      # end
+      @wine_app.votes.old.each do |v|
+        @vote_data.add_row([v.difficulty_value, nil, v.quality_value, nil])
+      end
 
-      # @wine_app.votes.oldest.each do |v|
-      #   @vote_data.add_row(v.difficulty_value, nil, nil, v.quality_value)
-      # end
+      @wine_app.votes.oldest.each do |v|
+        @vote_data.add_row([v.difficulty_value, nil, nil, v.quality_value])
+      end
 
       options = {
         width: 150, 
         height: 100, 
-        pointSize: 3,
+        pointSize: 1,
         legend: "none",
         series: [{
           dataOpacity: 1.0,
@@ -137,13 +137,13 @@ class WineAppsController < ApplicationController
         hAxis: {
           title: "Difficulty", 
           minValue: 0, 
-          maxValue: 1,
+          maxValue: 100,
           textPosition: "none"
         },
         vAxis: {
           title: "Quality", 
           minValue: 0, 
-          maxValue: 1,
+          maxValue: 100,
           textPosition: "none"
         }, 
         animation: {

@@ -2,18 +2,19 @@ class Vote < ActiveRecord::Base
   belongs_to :wine_app
   belongs_to :user
   validates :quality_value, numericality: true
-  validates :quality_value, inclusion: { in: (0..1), message: "quality vote must be between 0-1" }
+  validates :quality_value, inclusion: { in: (0..100), message: "quality vote must be between 0-100" }
   validates :difficulty_value, numericality: true 
-  validates :difficulty_value, inclusion: { in: (0..1), message: "difficulty vote must be between 0-1" }
+  validates :difficulty_value, inclusion: { in: (0..100), message: "difficulty vote must be between 0-100" }
   
+
   def self.recent
-    created_between(3.months.ago, Date.today)
+    self.where("#{user_exists(true)} AND #{created_between(3.months.ago, Time.now.utc)}").all
   end
   def self.old
-    created_between(6.months.ago, 3.months.ago)
+    self.where("(#{user_exists(false)} AND #{created_between(3.months.ago, Time.now.utc)}) OR (#{created_between(6.months.ago, 3.months.ago)})").all
   end
   def self.oldest
-    created_between(1000.years.ago, 6.months.ago)
+    self.where("#{created_between(1000.years.ago, 6.months.ago)}").all
   end
 
   def create
@@ -28,7 +29,20 @@ class Vote < ActiveRecord::Base
       params.require(:vote).permit(:quality_value, :difficulty_value)
     end
 
+    def self.user_exists(exists = false)
+      "user_id IS %s NULL" % [exists ? "NOT" : ""]
+    end
+
     def self.created_between(start_date, end_date)
-      self.where("created_at >= ? AND created_at <= ?", start_date, end_date )
+      "created_at >= '%s' AND created_at <= '%s'" % [start_date, end_date]
+    end
+
+    # unregistered votes automatically get taken down a peg
+    # def self.created_between(start_date, end_date)
+    #   self.where("(user_id IS NULL AND created_at >= ? AND created_at <= ?) OR (created_at >= ? AND created_at <= ?)", start_date, Date.today+1, start_date, end_date )
+    # end
+
+    def self.user_created_between(start_date, end_date)
+      self.where("user_id IS NOT NULL AND created_at >= ? AND created_at <= ?", start_date, end_date )
     end
 end

@@ -20,7 +20,7 @@ class VotesController < ApplicationController
   def index
     respond_to do |format|
       format.html { redirect_to @wine_app }
-      format.json { @votes = @wine_app.votes }
+      format.json { render json: prepare_votes_json }
     end
   end
 
@@ -31,18 +31,43 @@ class VotesController < ApplicationController
 
     def find_vote
       find_wineapp
-      # common_args = { wine_app_id: params[:wine_app_id], vote_type: params[:vote_type] }
       if user_signed_in?
         @vote = @wine_app.votes.find_by(user_id: current_user)
-        # @vote = Vote.all.where(common_args.merge({ user_id: current_user }) ).first
       else
         @vote = @wine_app.votes.where(user_id: nil, ip_address: request.remote_ip).first
-        # @vote = Vote.all.where(common_args.merge({ user_id: nil, ip_address: request.remote_ip }) ).first
       end
     end
 
     def find_wineapp
       @wine_app = WineApp.find(params[:wine_app_id])
+    end
+
+    # because this is a bit hard to read: we first have a definition of the columns to be presented in the vote_chart
+    # object in the DOM for a given WineApp model. The first column is the difficulty rating. This value never depreciates
+    # over time. The next series of values represent how old a vote is. Check the Vote model for more information about aging.
+    # The Google Charts DataTable object can be expressed in a literal, which is what this method is producing. For cool, wow
+    # whiz-bang whoosh effects, we're producing the "live data" elements to represent all the actual data, then deep-copying
+    # that data to preserve the original reference, and then applying "0" where there once was a voted value. We'll first draw
+    # the chart with the zeroed-out values, and then after a delay, draw the chart with the actual data to get an animated effect. 
+    def prepare_votes_json
+      @wine_app || find_wineapp 
+      live_data = Hash.new
+      live_data[:cols] = [
+                        {id: "difficulty", label: "Difficulty", type: "number"},
+                        {id: "recent", label: "Recent", type: "number"},
+                        {id: "3-6months", label: "3-6 Months", type: "number"},
+                        {id: "6+Months", label: "6+ Months", type: "number"}
+                      ]
+      live_data[:rows] = @wine_app.votes.recent.map { |v| { c: [{v: v.difficulty_value}, {v: v.quality_value}, {v: nil}, {v: nil}] } }
+      live_data[:rows] += @wine_app.votes.old.map { |v| { c: [{v: v.difficulty_value}, {v: nil}, {v: v.quality_value}, {v: nil}] } }
+      live_data[:rows] += @wine_app.votes.oldest.map { |v| { c: [{v: v.difficulty_value}, {v: nil}, {v: nil}, {v: v.quality_value}] } }
+
+      blank_data = Marshal.load(Marshal.dump(live_data))
+      blank_data[:rows].each { |r| r[:c].each_with_index { |c, i| c[:v] = 0 if c[:v] unless i == 0 } }
+
+      output = { live_data: live_data, blank_data: blank_data }
+
+      return output.to_json
     end
 
 end

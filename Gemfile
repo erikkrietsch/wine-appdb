@@ -64,7 +64,7 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'factory_girl_rails', require: false
   gem 'pry'
-  gem 'seed-fu'
+  gem 'seed-fu', github: 'mbleigh/seed-fu'
 end
 
 group :test do
