@@ -4,8 +4,7 @@ def seed_votes(created_date, ip_address)
       Vote.seed do |v|
         difficulty_value = rand(0..100)
         quality_value = difficulty_value + rand(-10..10)
-        
-        quality_value = 100 if quality_value > 100
+        quality_value = quality_value.round(-2) unless (0..100).include? quality_value
         v.difficulty_value = difficulty_value
         v.quality_value = quality_value
         v.ip_address = ip_address.succ!

@@ -1,5 +1,6 @@
 # TODO
 
+populate chart via AJAX call, and animate it because it's cool that's why
 update vote chart after form submitted
 
 integrate Hallo/Markdown
