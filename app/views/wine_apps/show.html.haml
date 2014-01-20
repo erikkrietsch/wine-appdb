@@ -1,16 +1,11 @@
 %h3= @wine_app.name
 :javascript
   jQuery( document ).ready(function() {
+    getChartData("#{@wine_app.id}");
     jQuery('form#voteForm').bind('ajax:success', function(evt, data, status, xhr){
       jQuery('#votealert').text('Done.');
       setInterval(3000, function() { jQuery('#votealert').text(''); });
-      jQuery.get(
-        "#{wine_app_votes_path(@wine_app)}",
-        function(data, textStatus, jqXHR) { 
-          console.log(data);
-        },
-        "json"
-      );
+      getChartData("#{@wine_app.id}");
     });
     jQuery('#voteForm').ajaxError(function(xhr, status, error) {
       jQuery('#votealert').text('Failed.');
@@ -31,7 +26,6 @@
   %br
   %li 
     #vote_chart
-    = render_chart @vote_chart, "vote_chart" 
   %li
     %b Description
     [ 
