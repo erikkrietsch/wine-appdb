@@ -55,6 +55,9 @@ gem 'jbuilder', '~> 1.2'
 # Paperclip to handle screenshot uploads
 gem 'paperclip'
 
+# For populating data elements as needed
+gem 'seed-fu', github: 'mbleigh/seed-fu'
+
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false
@@ -64,7 +67,6 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'factory_girl_rails', require: false
   gem 'pry'
-  gem 'seed-fu', github: 'mbleigh/seed-fu'
 end
 
 group :test do
