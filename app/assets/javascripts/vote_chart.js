@@ -1,5 +1,10 @@
 google.load('visualization','1', {packages: ['corechart']});
 
+var 
+  chart = null,
+  blank_table = null,
+  data_table = null;
+
 function getChartData(appId) { 
   jQuery.get(
           "/apps/" + appId + "/votes/",
@@ -12,15 +17,19 @@ function getChartData(appId) {
 }
 
 function drawChart(data) {
-  var blank_table = new google.visualization.DataTable(data.blank_data);
-
-
-  var data_table = new google.visualization.DataTable(data.live_data);
+  if (blank_table == null) { 
+    blank_table = new google.visualization.DataTable(data.blank_data);
+  }
+  if (data_table == null) {
+    data_table = new google.visualization.DataTable(data.live_data);
+  } else {
+    data_table.removeRows(0, data_table.getNumberOfRows());
+    data_table = new google.visualization.DataTable(data.live_data);
+  }
   
   var options = {
     width: 200, 
     height: 150, 
-    // title: "Simplicity vs. Difficulty", 
     pointSize: 5,
     legend: "none",
     series: [{
@@ -34,13 +43,13 @@ function drawChart(data) {
       color: "#3366CC"
     }], 
     hAxis: {
-      title: "Difficulty", 
+      // title: "Difficulty", 
       minValue: 0, 
       maxValue: 100,
       textPosition: "none"
     },
     vAxis: {
-      title: "Quality", 
+      // title: "Quality", 
       minValue: 0, 
       maxValue: 100,
       textPosition: "none"
@@ -50,7 +59,12 @@ function drawChart(data) {
       easing: "out" 
     }
   };
-  var chart = new google.visualization.ScatterChart(document.getElementById('vote_chart'));
-  chart.draw(blank_table, options);
-  setInterval(function(){chart.draw(data_table, options)}, 300);
+  if (chart==null) { 
+    chart = new google.visualization.ScatterChart(document.getElementById('vote_chart')); 
+    chart.draw(blank_table, options);
+    setInterval(function(){chart.draw(data_table, options)}, 300);
+  } else { 
+    console.debug("chart is not null");
+  }
+  
 };

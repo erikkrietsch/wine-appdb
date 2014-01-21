@@ -4,8 +4,8 @@
     getChartData("#{@wine_app.id}");
     jQuery('form#voteForm').bind('ajax:success', function(evt, data, status, xhr){
       jQuery('#votealert').text('Done.');
-      setInterval(3000, function() { jQuery('#votealert').text(''); });
       getChartData("#{@wine_app.id}");
+      setInterval(function() { jQuery('#votealert').text(''); }, 3000);
     });
     jQuery('#voteForm').ajaxError(function(xhr, status, error) {
       jQuery('#votealert').text('Failed.');
