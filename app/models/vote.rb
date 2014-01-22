@@ -8,13 +8,13 @@ class Vote < ActiveRecord::Base
   
 
   def self.recent
-    self.where("#{user_exists(true)} AND #{created_between(3.months.ago, Time.now.utc)}").all
+    self.where("#{user_exists(true)} AND #{created_between(3.months.ago, DateTime.now+1)}")
   end
   def self.old
-    self.where("(#{user_exists(false)} AND #{created_between(3.months.ago, Time.now.utc)}) OR (#{created_between(6.months.ago, 3.months.ago)})").all
+    self.where("(#{user_exists(false)} AND #{created_between(3.months.ago, DateTime.now+1)}) OR (#{created_between(6.months.ago, 3.months.ago)})")
   end
   def self.oldest
-    self.where("#{created_between(1000.years.ago, 6.months.ago)}").all
+    self.where("#{created_between(1000.years.ago, 6.months.ago)}")
   end
 
   def create

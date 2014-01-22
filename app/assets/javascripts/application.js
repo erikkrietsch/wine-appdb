@@ -16,4 +16,5 @@
 //= require_tree .
 // Take this out and replace with specific components before launching prod site.
 //= require jquery.ui.all
+//= require rangy-core
 //= require hallo

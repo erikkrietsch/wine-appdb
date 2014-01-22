@@ -19,14 +19,16 @@ WineAppdb::Application.routes.draw do
 
   # resources :wine_apps do
     resource :developer
-    resources :descriptions, controller: :wiki_entries, as: :wiki_entries
-    resources :install_instructions, controller: :wiki_entries, as: :wiki_entries
-    resources :wine_instructions, controller: :wiki_entries, as: :wiki_entries
     resources :screenshots
     post "vote", to: "votes#create", as: :create_vote
     patch "vote",  to: "votes#create", as: :update_vote
     get "votes", to: "votes#index"
     # get "vote", to: "votes#index", as: :vote_index
+    
+    # resources :install_instructions, controller: :wiki_entries, as: :wiki_entries
+    # resources :wine_instructions, controller: :wiki_entries, as: :wiki_entries
+    post "wiki/:wiki_type", to: "wiki_entries#create"
+    resources :descriptions, controller: :wiki_entries, as: :wiki_entries
   end
 
   resources :developers

@@ -1,10 +1,34 @@
 class WikiEntriesController < ApplicationController
   before_action :set_wiki_entry, only: [:show]
+  # before_action :find_wikiable, only: [:create]
   def show 
   end
 
+  def create  
+    wikiable = find_wikiable
+    # binding.pry
+    collection_name = params[:wiki_type]
+    if %w[descriptions install_instructions wine_instructions].include?(collection_name)
+      wiki_entry = WikiEntry.new
+      wiki_entry.content = ReverseMarkdown.parse params[:wiki_entry]
+      wiki_entry.user = current_user
+      wikiable.send(collection_name) << wiki_entry
+      if wikiable.save
+        respond_to do |format|
+          format.html { redirect_to @wikiable  }
+          format.json { render json: { message: "Entry saved." }.to_json }
+        end
+      end
+    else
+      respond_to do |format|
+        format.html { redirect_to @wikiable  }
+        format.json { render json: { message: "Error saving entry." }.to_json }
+      end      
+    end
+  end
+
   def index
-    @page_title = "Wike Entries"
+    @page_title = "Wiki Entries"
     @wiki_entries = find_wiki_entries
   end
 
@@ -27,18 +51,18 @@ class WikiEntriesController < ApplicationController
     end
 
     def find_wiki_entries
-      @wikiable = find_wikiable
-      nil unless @wikiable
-      if @wikiable.is_a?(WineApp)
+      wikiable = find_wikiable
+      nil unless wikiable
+      if wikiable.is_a?(WineApp)
         if request.fullpath.include? "/descriptions"
           @page_title = "Descriptions"
-          return @wikiable.descriptions.order(updated_at: :desc)
+          return wikiable.descriptions.order(updated_at: :desc)
         elsif request.fullpath.include? "/install_instructions"
           @page_title = "Install Instructions"
-          return @wikiable.install_instructions.order(updated_at: :desc)
+          return wikiable.install_instructions.order(updated_at: :desc)
         elsif request.fullpath.include? "/wine_instructions"
           @page_title = "Wine Instructions"
-          return @wikiable.wine_instructions.order(updated_at: :desc)
+          return wikiable.wine_instructions.order(updated_at: :desc)
         end
       end
     end

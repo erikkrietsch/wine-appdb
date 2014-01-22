@@ -2,13 +2,17 @@
 
 %ul
   -@wiki_entries.each do |entry|
-    %li 
-      =truncate entry.content, length: 30, separator: /\w/, omission: "..."
+    %li
       =entry.updated_at
+      by
       - if entry.user
         = entry.user.email 
       - else
-        %i &lt;User not found&gt;
+        %i &lt;User not found&gt; 
+      %ul
+        %li
+          =entry.content
+        
 
 = link_to "Back", @wikiable
 - if user_signed_in?

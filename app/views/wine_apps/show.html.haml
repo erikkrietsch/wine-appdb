@@ -3,7 +3,8 @@
   jQuery( document ).ready(function() {
     getChartData("#{@wine_app.id}");
     jQuery('form#voteForm').bind('ajax:success', function(evt, data, status, xhr){
-      jQuery('#votealert').text('Done.');
+      console.debug(data);
+      jQuery('#votealert').text(data.message);
       getChartData("#{@wine_app.id}");
       setInterval(function() { jQuery('#votealert').text(''); }, 3000);
     });
@@ -12,7 +13,7 @@
     });
   });
 %ul
-  = form_for @vote, url: wine_app_create_vote_path(@wine_app), html: { id: "voteForm" }, update: { success: "response", failure: "error" },remote: true, method: :post do |f|
+  = form_for @vote, url: wine_app_create_vote_path(@wine_app, format: :json), html: { id: "voteForm" }, remote: true, method: :post do |f| #update: { success: "response", failure: "error" }
     %li 
       %b Difficulty
       = f.range_field :difficulty_value, { min: 0, max: 100, step: 1 }
@@ -31,13 +32,37 @@
     [ 
     =link_to("History", wine_app_wiki_entries_path(@wine_app)) 
     ]
+
     #wiki
       :markdown
         #{ @wine_app.description }
-    -if user_signed_in? 
-      :javascript
-        jQuery("#wiki").hallo();
-      
+
+    - if user_signed_in? 
+
+      = form_for @wine_app, url: "/apps/#{@wine_app.id}/wiki/descriptions.json", html: {id: "descForm"}, remote: true, method: :post do |f|
+        = f.hidden_field :description, id: "hidDescription", name: "wiki_entry"
+
+        :javascript
+          jQuery('#wiki').hallo({
+            plugins: {
+              'halloformat': {},
+              'halloheadings': {},
+              'halloblock': {},
+              'hallojustify': {},
+              'hallolists': {},
+              'halloreundo': {}
+            }
+          });
+          jQuery('#wiki').bind('hallomodified', function(event, data) { 
+            console.debug(data.content);
+            jQuery('#hidDescription').val(data.content); 
+          });
+          jQuery('#descForm').bind('ajax:success', function(event, data, textStatus, xhr) { 
+            console.debug(data);
+          })
+
+        = submit_tag "Update"
+
   - if @wine_app.screenshots.count > 0
     %li 
       %b Screenshots

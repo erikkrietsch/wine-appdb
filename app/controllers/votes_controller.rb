@@ -11,9 +11,15 @@ class VotesController < ApplicationController
     @vote.wine_app = @wine_app
 
     if @vote.save
-      redirect_to @wine_app, notice: "Vote was successfully recorded."
+      respond_to do |format|
+        format.html { redirect_to @wine_app, notice: "Vote was successfully recorded." }
+        format.json { render json: {message: "Vote was recorded." }.to_json }
+      end
     else
-      redirect_to @wine_app, notice: "Vote was not added. #{@vote.errors.first}"
+      respond_to do |format|
+        format.html { redirect_to @wine_app, notice: "Vote was not added. #{@vote.errors.first}" }
+        format.json { render json: "{'message': 'Vote was not saved'}" }
+      end
     end
   end
 

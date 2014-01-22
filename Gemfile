@@ -38,7 +38,8 @@ gem 'jquery-rails'
 gem 'jquery-ui-rails'
 gem 'jquery-ui-themes'
 gem 'font-awesome-rails'
-gem 'hallo'
+gem 'hallo-rails'
+gem 'reverse_markdown'
 
 # I'm making this decision consciously, and of my own volition.
 gem 'twitter-bootstrap-rails'
