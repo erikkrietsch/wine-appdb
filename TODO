@@ -1,6 +1,16 @@
 # TODO
 
+change webserver on heroku # https://devcenter.heroku.com/articles/getting-started-with-rails4#webserver
+TESTS!
 integrate Hallo/Markdown
+	integrate FontAwesome/styles
+
+turbolinks + safari = no vote chart? 
+
+no <pre> tag in markdown scrubbing?
+
+implement search functionality. Sunspot?
+
 clean up app screenshots view; add gallery
 clean up App show view
 

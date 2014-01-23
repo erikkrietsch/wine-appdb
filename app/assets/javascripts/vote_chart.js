@@ -53,6 +53,7 @@ function drawChart(data) {
   if (chart==null) { 
     chart = new google.visualization.ScatterChart(document.getElementById('vote_chart')); 
   }
+  console.log('drawing chart...')
   chart.draw(chartData.last(), options);
   
 };

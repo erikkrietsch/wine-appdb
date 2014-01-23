@@ -15,20 +15,26 @@ class WikiEntriesController < ApplicationController
       wikiable.send(collection_name) << wiki_entry
       if wikiable.save
         respond_to do |format|
-          format.html { redirect_to @wikiable  }
+          format.html { redirect_to @wikiable, notice: "Entry saved." }
           format.json { render json: { message: "Entry saved." }.to_json }
+        end
+      else
+        respond_to do |format|
+          format.html { redirect_to @wikiable, notice: "Error saving entry: #{wiki_entry.errors.first}" }
+          format.json { render json: { message: "Error saving entry: #{wiki_entry.errors.first}." }.to_json }
         end
       end
     else
       respond_to do |format|
-        format.html { redirect_to @wikiable  }
-        format.json { render json: { message: "Error saving entry." }.to_json }
+        format.html { redirect_to @wikiable, notice: "Error saving entry: Bad collection name."  }
+        format.json { render json: { message: "Error saving entry: Bad collection name." }.to_json }
       end      
     end
   end
 
   def index
     @page_title = "Wiki Entries"
+    @wikiable = find_wikiable
     @wiki_entries = find_wiki_entries
   end
 
@@ -51,7 +57,7 @@ class WikiEntriesController < ApplicationController
     end
 
     def find_wiki_entries
-      wikiable = find_wikiable
+      wikiable = @wikiable || find_wikiable
       nil unless wikiable
       if wikiable.is_a?(WineApp)
         if request.fullpath.include? "/descriptions"

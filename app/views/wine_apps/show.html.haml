@@ -1,6 +1,8 @@
 %h3= @wine_app.name
 :javascript
-  jQuery( document ).ready(function() {
+  var ready;
+  ready = function() {
+    console.log('ready');
     getChartData("#{@wine_app.id}");
     jQuery('form#voteForm').bind('ajax:success', function(evt, data, status, xhr){
       console.debug(data);
@@ -11,7 +13,11 @@
     jQuery('#voteForm').ajaxError(function(xhr, status, error) {
       jQuery('#votealert').text('Failed.');
     });
-  });
+
+  };
+
+  jQuery(document).ready(ready);
+  jQuery(document).on('page:load', ready);
 %ul
   = form_for @vote, url: wine_app_create_vote_path(@wine_app, format: :json), html: { id: "voteForm" }, remote: true, method: :post do |f| #update: { success: "response", failure: "error" }
     %li 
