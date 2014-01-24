@@ -10,7 +10,7 @@ class WikiEntriesController < ApplicationController
     collection_name = params[:wiki_type]
     if %w[descriptions install_instructions wine_instructions].include?(collection_name)
       wiki_entry = WikiEntry.new
-      wiki_entry.content = ReverseMarkdown.parse params[:wiki_entry]
+      wiki_entry.content = params[:wiki_entry]
       wiki_entry.user = current_user
       wikiable.send(collection_name) << wiki_entry
       if wikiable.save

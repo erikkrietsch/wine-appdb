@@ -34,6 +34,11 @@ var options = {
   }
 };
 
+jQuery(window).unload(function() {
+  console.log('unloading chart...');
+  chart = null;
+});
+
 function getChartData(appId) { 
   jQuery.ajax({
           url: "/apps/" + appId + "/votes/",
@@ -55,5 +60,6 @@ function drawChart(data) {
   }
   console.log('drawing chart...')
   chart.draw(chartData.last(), options);
+  chart = null;
   
 };

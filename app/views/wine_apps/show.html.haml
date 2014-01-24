@@ -57,11 +57,12 @@
               'hallojustify': {},
               'hallolists': {},
               'halloreundo': {}
-            }
+            },
+            toolbar: 'halloToolbarFixed'
           });
           jQuery('#wiki').bind('hallomodified', function(event, data) { 
-            console.debug(data.content);
-            jQuery('#hidDescription').val(data.content); 
+            console.debug(toMarkdown(data.content));
+            jQuery('#hidDescription').val(toMarkdown(data.content)); 
           });
           jQuery('#descForm').bind('ajax:success', function(event, data, textStatus, xhr) { 
             console.debug(data);

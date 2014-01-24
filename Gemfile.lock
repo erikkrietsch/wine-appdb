@@ -1,4 +1,11 @@
 GIT
+  remote: git://github.com/ErikTRSI/hallo-rails.git
+  revision: 7f8e2861b7b068dd2d16676a316d0d51338502a5
+  specs:
+    hallo-rails (1.0.3)
+      rangy-rails
+
+GIT
   remote: git://github.com/mbleigh/seed-fu.git
   revision: 6dbf3fac92666f2fcfc65ab882fb95ed3ef51712
   specs:
@@ -103,8 +110,6 @@ GEM
     gherkin (2.12.2)
       multi_json (~> 1.3)
     google_visualr (2.1.9)
-    hallo-rails (1.0.3)
-      rangy-rails
     haml (4.0.4)
       tilt
     haml-rails (0.4)
@@ -266,7 +271,7 @@ DEPENDENCIES
   figaro
   font-awesome-rails
   google_visualr (~> 2.1.0)
-  hallo-rails
+  hallo-rails!
   haml-rails
   jbuilder (~> 1.2)
   jquery-rails

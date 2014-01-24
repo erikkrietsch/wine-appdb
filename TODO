@@ -1,20 +1,14 @@
 # TODO
 
-change webserver on heroku # https://devcenter.heroku.com/articles/getting-started-with-rails4#webserver
 TESTS!
-integrate Hallo/Markdown
-	integrate FontAwesome/styles
-
-turbolinks + safari = no vote chart? 
-
-no <pre> tag in markdown scrubbing?
 
 implement search functionality. Sunspot?
 
+clean up Hallo toolbar styles
 clean up app screenshots view; add gallery
 clean up App show view
 
-lock down screenshots#index
+lock down screenshots#index (no editing for unregistered users)
 
 associate bug reports with Apps (:has_many_through => WineAppProblems )
 populate bug reports table with mock data
