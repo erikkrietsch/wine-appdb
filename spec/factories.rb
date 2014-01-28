@@ -10,8 +10,10 @@ FactoryGirl.define do
   end
 
   factory :vote do
-    value { rand(5) + 1 }
+    quality_value { rand(100) + 1 }
+    difficulty_value { rand(100) + 1 }
     # type { ["quality", "ease" ].sample } 
+    ip_address "192.168.0.0"
     association :user, strategy: :build
     association :wine_app, strategy: :build
   end
@@ -28,7 +30,7 @@ FactoryGirl.define do
     factory :user_with_votes do
       after(:build) do |user, evaluator|
         user.votes = FactoryGirl.build_list(:vote, evaluator.vote_count)
-        # user.screenshots = FactoryGirl.build_list(:screenshot, evaluator.ss_count)
+        user.screenshots = FactoryGirl.build_list(:screenshot, evaluator.ss_count)
       end
     end
   end
