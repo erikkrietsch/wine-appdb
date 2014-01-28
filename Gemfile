@@ -40,17 +40,16 @@ gem 'therubyracer', platforms: :ruby
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
 gem 'jquery-ui-themes'
+# gem 'jquery-turbolinks'
 gem 'font-awesome-rails'
 gem 'hallo-rails', github: 'ErikTRSI/hallo-rails'
 
 # I'm making this decision consciously, and of my own volition.
+gem 'less-rails'
 gem 'twitter-bootstrap-rails'
 
 #use the Facebook React library
 #gem 'react-rails'
-
-# Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
-gem 'turbolinks'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 1.2'

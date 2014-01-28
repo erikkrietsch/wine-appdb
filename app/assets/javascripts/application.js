@@ -12,9 +12,9 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require turbolinks
-//= require_tree .
+//= require twitter/bootstrap
 // Take this out and replace with specific components before launching prod site.
 //= require jquery.ui.all
 //= require rangy-core
 //= require hallo
+//= require_tree .

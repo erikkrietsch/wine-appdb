@@ -35,7 +35,7 @@ var options = {
 };
 
 jQuery(window).unload(function() {
-  console.log('unloading chart...');
+  // console.log('unloading chart...');
   chart = null;
 });
 
@@ -58,7 +58,7 @@ function drawChart(data) {
   if (chart==null) { 
     chart = new google.visualization.ScatterChart(document.getElementById('vote_chart')); 
   }
-  console.log('drawing chart...')
+  // console.log('drawing chart...')
   chart.draw(chartData.last(), options);
   chart = null;
   

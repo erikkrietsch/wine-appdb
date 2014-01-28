@@ -4,20 +4,21 @@
   ready = function() {
     console.log('ready');
     getChartData("#{@wine_app.id}");
-    jQuery('form#voteForm').bind('ajax:success', function(evt, data, status, xhr){
+    $('form#voteForm').bind('ajax:success', function(evt, data, status, xhr){
       console.debug(data);
-      jQuery('#votealert').text(data.message);
+      $('#votealert').text(data.message);
       getChartData("#{@wine_app.id}");
-      setInterval(function() { jQuery('#votealert').text(''); }, 3000);
+      setInterval(function() { $('#votealert').text(''); }, 3000);
     });
-    jQuery('#voteForm').ajaxError(function(xhr, status, error) {
-      jQuery('#votealert').text('Failed.');
+    $('#voteForm').ajaxError(function(xhr, status, error) {
+      $('#votealert').text('Failed.');
     });
 
   };
-
-  jQuery(document).ready(ready);
-  jQuery(document).on('page:load', ready);
+  $(document).ready(function() { console.debug('$ ready!'); })
+  $(document).ready(ready);
+  // $(window).load(ready);
+  $(document).on('page:load', ready);
 %ul
   = form_for @vote, url: wine_app_create_vote_path(@wine_app, format: :json), html: { id: "voteForm" }, remote: true, method: :post do |f| #update: { success: "response", failure: "error" }
     %li 
@@ -27,7 +28,7 @@
     %li 
       %b Quality
       = f.range_field :quality_value, { min: 0, max: 100, step: 1 }
-    = submit_tag "Vote"
+    = submit_tag "Vote", class: "btn"
     %p#votealert
 
   %br
@@ -61,19 +62,19 @@
             toolbar: 'halloToolbarFixed'
           });
           jQuery('#wiki').bind('hallomodified', function(event, data) { 
-            console.debug(toMarkdown(data.content));
+            // console.debug(toMarkdown(data.content));
             jQuery('#hidDescription').val(toMarkdown(data.content)); 
           });
           jQuery('#descForm').bind('ajax:success', function(event, data, textStatus, xhr) { 
             console.debug(data);
           })
 
-        = submit_tag "Update"
+        = submit_tag "Update", class: "btn"
 
   - if @wine_app.screenshots.count > 0
     %li 
       %b Screenshots
-      %ul
+      %ul.thumbnails
         -@wine_app.screenshots.each do |ss|
           %li= link_to image_tag(ss.image.url(:thumb)), wine_app_screenshot_path(@wine_app, ss)
 - if user_signed_in?

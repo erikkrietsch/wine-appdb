@@ -56,7 +56,7 @@ var toMarkdown = function(string) {
       }
     },
     {
-      patterns: 'code',
+      patterns: ['pre', 'code'],
       replacement: function(str, attrs, innerHTML) {
         return innerHTML ? '`' + innerHTML + '`' : '';
       }
