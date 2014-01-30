@@ -40,7 +40,8 @@ gem 'therubyracer', platforms: :ruby
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
 gem 'jquery-ui-themes'
-# gem 'jquery-turbolinks'
+gem 'jquery-turbolinks'
+gem 'turbolinks'
 gem 'font-awesome-rails'
 gem 'hallo-rails', github: 'ErikTRSI/hallo-rails'
 

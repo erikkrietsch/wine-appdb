@@ -5,8 +5,8 @@
   <script src="https://www.google.com/jsapi"></script>
   <script src="http://rangy.googlecode.com/svn/trunk/currentrelease/rangy-core.js"></script>
   <script src="//ajax.googleapis.com/ajax/libs/prototype/1.7.1.0/prototype.js"></script> 
-  <%= stylesheet_link_tag    "application", media: "all" %>
-  <%= javascript_include_tag "application" %>
+  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">

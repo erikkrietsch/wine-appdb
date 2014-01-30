@@ -30,3 +30,4 @@ config/aws.yml
 /config/application.yml
 public/test/*
 .env
+public/assets/*
