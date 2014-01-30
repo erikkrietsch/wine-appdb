@@ -1,6 +1,6 @@
 def seed_votes(created_date, ip_address)
   WineApp.all.each do |wine_app|
-    10.times do |i|
+    33.times do |i|
       Vote.seed do |v|
         difficulty_value = rand(0..100)
         quality_value = difficulty_value + rand(-10..10)

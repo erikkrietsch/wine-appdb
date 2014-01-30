@@ -2,12 +2,20 @@
 
 TESTS! (and more tests)
 
+application categories
+developers
+
+move "current" vote series to be on top, z-order
+votes for unregistered users not pre-populating data on app#show
+spend an hour on markdown interpretation by to-markdown.js
+
 implement search functionality. Sunspot?
 
 clean up Hallo toolbar styles
 clean up app screenshots view; add gallery
 clean up App show view
 
+flag screenshots as inappropriate
 lock down screenshots#index (no editing for unregistered users)
 
 associate bug reports with Apps (:has_many_through => WineAppProblems )

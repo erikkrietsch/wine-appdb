@@ -28,7 +28,7 @@
     %li 
       %b Quality
       = f.range_field :quality_value, { min: 0, max: 100, step: 1 }
-    = submit_tag "Vote", class: "btn"
+    = submit_tag "Vote", class: "btn btn-primary"
     %p#votealert
 
   %br
@@ -69,14 +69,14 @@
             console.debug(data);
           })
 
-        = submit_tag "Update", class: "btn"
+        = submit_tag "Update", class: "btn btn-primary"
 
   - if @wine_app.screenshots.count > 0
     %li 
       %b Screenshots
       %ul.thumbnails
         -@wine_app.screenshots.each do |ss|
-          %li= link_to image_tag(ss.image.url(:thumb)), wine_app_screenshot_path(@wine_app, ss)
+          %li= link_to image_tag(ss.image.url(:thumb), class: "img-rounded"), wine_app_screenshot_path(@wine_app, ss)
 - if user_signed_in?
   = link_to 'Edit', edit_wine_app_path(@wine_app)
   \|
