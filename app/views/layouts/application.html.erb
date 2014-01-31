@@ -38,15 +38,15 @@
 <!--   // <script type="text/javascript" src="//www.google.com/coop/cse/brand?form=cse-search-box&amp;lang=en"></script> -->
 <!-- </div> -->
 
-<% if user_signed_in? %>
-	<%= link_to 'Logout', destroy_user_session_path, class: "btn btn-inverse", method: 'delete'  %>
-	<%= link_to( edit_user_registration_path, class: "btn" )  do %>
-    <i class="fa fa-user"></i> Profile
-  <% end %>
-<% else %>
-	<%= link_to 'Login', new_user_session_path %>
-	<%=	link_to 'Sign up', new_user_registration_path %>
-<% end %>
+<!-- <% if user_signed_in? %> -->
+	<!-- <%= link_to 'Logout', destroy_user_session_path, class: "btn btn-inverse", method: 'delete'  %> -->
+	<!-- <%= link_to( edit_user_registration_path, class: "btn" )  do %> -->
+    <!-- <i class="fa fa-user"></i> Profile -->
+  <!-- <% end %> -->
+<!-- <% else %> -->
+	<!-- <%= link_to 'Login', new_user_session_path %> -->
+	<!-- <%=	link_to 'Sign up', new_user_registration_path %> -->
+<!-- <% end %> -->
 
 <div id="tabs">
 		<ul>
@@ -57,6 +57,8 @@
         <li><a href="//forum.winehq.org/">Forums</a></li>
     </ul>
 </div>
+
+<%= render partial: 'layouts/side_nav' %>
 
 <div id="main_content" class="container">
 

@@ -29,7 +29,10 @@
       %b Quality
       = f.range_field :quality_value, { min: 0, max: 100, step: 1 }
     = submit_tag "Vote", class: "btn btn-primary"
-    %p#votealert
+    #votealert.alert.alert-block.alert-success
+      %button.close(type="button" data-dismiss="alert")
+      :plain
+        Hi.
 
   %br
   %li 
