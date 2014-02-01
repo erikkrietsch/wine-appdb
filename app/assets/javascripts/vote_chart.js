@@ -1,9 +1,12 @@
 google.load('visualization','1', {packages: ['corechart']});
 
+
+
 var 
   chart = null,
   blankData = [],
   chartData = [];
+  appId = -1;
 
 var options = {
   width: 200, 
@@ -34,12 +37,33 @@ var options = {
   }
 };
 
-jQuery(window).unload(function() {
-  // console.log('unloading chart...');
+var ready;
+ready = function() {
+  fetchChartData();
+  $('form#voteForm').bind('ajax:success', 
+    function(evt, data, status, xhr){
+      $alert = $('#votealert');
+      $msg = $('div:first.message', $alert);
+      $msg.text(data.message);
+      $alert.show();
+
+      fetchChartData();
+      setInterval(function() { $alert.hide(); }, 3000);
+    });
+  $('#voteForm').ajaxError(function(xhr, status, error) {
+    $('#votealert.message').text('Failed.');
+  });
+
+};
+
+// $(document).on('page:load', function() { console.log("page:load fired"); ready(); } );
+$(document).on('page:receive', function() {
+  console.log('unloading chart...');
+  // $(document).off('page:load');
   chart = null;
 });
 
-function getChartData(appId) { 
+function fetchChartData() { 
   jQuery.ajax({
           url: "/apps/" + appId + "/votes/",
           type: "GET",
@@ -60,6 +84,8 @@ function drawChart(data) {
   }
   // console.log('drawing chart...')
   chart.draw(chartData.last(), options);
+  blankData.pop();
+  chartData.pop();
   chart = null;
   
 };

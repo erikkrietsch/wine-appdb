@@ -2,13 +2,10 @@
 
 TESTS! (and more tests)
 
-null vote chart var when page unloads (turbolinks) -- vote chart data cycles oddly when clicking between apps
-build side nav bar
 application categories
 developers
 
-move "current" vote series to be on top, z-order
-votes for unregistered users not pre-populating data on app#show
+vote form for unregistered users not pre-populating data on app#show
 spend an hour on markdown interpretation by to-markdown.js
 
 implement search functionality. Sunspot?
