@@ -60,13 +60,13 @@ class VotesController < ApplicationController
       live_data = Hash.new
       live_data[:cols] = [
                         {id: "difficulty", label: "Difficulty", type: "number"},
-                        {id: "recent", label: "Recent", type: "number"},
+                        {id: "6+Months", label: "6+ Months", type: "number"},
                         {id: "3-6months", label: "3-6 Months", type: "number"},
-                        {id: "6+Months", label: "6+ Months", type: "number"}
+                        {id: "recent", label: "Recent", type: "number"}                        
                       ]
-      live_data[:rows] = @wine_app.votes.recent.map { |v| { c: [{v: v.difficulty_value}, {v: v.quality_value}, {v: nil}, {v: nil}] } }
+      live_data[:rows] = @wine_app.votes.oldest.map { |v| { c: [{v: v.difficulty_value}, {v: v.quality_value}, {v: nil}, {v: nil}] } }
       live_data[:rows] += @wine_app.votes.old.map { |v| { c: [{v: v.difficulty_value}, {v: nil}, {v: v.quality_value}, {v: nil}] } }
-      live_data[:rows] += @wine_app.votes.oldest.map { |v| { c: [{v: v.difficulty_value}, {v: nil}, {v: nil}, {v: v.quality_value}] } }
+      live_data[:rows] += @wine_app.votes.recent.map { |v| { c: [{v: v.difficulty_value}, {v: nil}, {v: nil}, {v: v.quality_value}] } }
 
       blank_data = Marshal.load(Marshal.dump(live_data))
       blank_data[:rows].each { |r| r[:c].each_with_index { |c, i| c[:v] = 0 if c[:v] unless i == 0 } }

@@ -11,14 +11,14 @@ var options = {
   pointSize: 3,
   legend: "none",
   series: [{
-    dataOpacity: 1.0,
-    color: "#A50D0D"
+    dataOpacity: 0.3,
+    color: "#3366CC"
   },{
     dataOpacity: 0.7,
     color: "#3366CC"
   },{
-    dataOpacity: 0.3,
-    color: "#3366CC"
+    dataOpacity: 1.0,
+    color: "#A50D0D"
   }], 
   hAxis: {
     // title: "Difficulty", 

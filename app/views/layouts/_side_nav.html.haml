@@ -1,19 +1,23 @@
-%ul.nav.nav-list
-  %li.nav-header
-    %i.fa.fa-glass
-    AppDB
-  %li
-    =link_to "Home", :root
-  %li
-    =link_to "Apps", wine_apps_path
-  %li.nav-header
-    %i.fa.fa-user
-    User
-  %li
-    -if user_signed_in?
-      =link_to "Profile", edit_user_registration_path
-      =link_to "Log out", destroy_user_session_path, method: "delete"
-    -else
-      =link_to 'Login', new_user_session_path
-      =link_to 'Sign up', new_user_registration_path
+#sidebar
+  %ul
+    %li.top
+      %p AppDB
+    %li
+      %p=link_to "Home", :root
+    %li
+      %p=link_to "Apps", wine_apps_path
+    %li.bot
 
+    %li.top
+      %p User
+    -if user_signed_in?
+      %li
+        %p=link_to "Profile", edit_user_registration_path
+      %li
+        %p=link_to "Log out", destroy_user_session_path, method: "delete"
+    -else
+      %li
+        %p=link_to 'Login', new_user_session_path
+      %li
+        %p=link_to 'Sign up', new_user_registration_path
+    %li.bot

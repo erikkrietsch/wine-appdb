@@ -2,6 +2,7 @@
 
 TESTS! (and more tests)
 
+null vote chart var when page unloads (turbolinks) -- vote chart data cycles oddly when clicking between apps
 build side nav bar
 application categories
 developers
@@ -12,6 +13,7 @@ spend an hour on markdown interpretation by to-markdown.js
 
 implement search functionality. Sunspot?
 
+figure out CSS diffs (between winehq.org) on sidebar
 clean up Hallo toolbar styles
 clean up app screenshots view; add gallery
 clean up App show view

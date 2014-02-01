@@ -66,10 +66,13 @@
   <b class="rtop"><b class="r1"></b><b class="r2"></b><b class="r3"></b><b class="r4"></b></b>
     <div class="content" style="padding: 20px 20px 10px 80px">
     <!-- Start Content -->
-
+    <%- if notice %>
 		<p class="notice"><%= notice %></p>
+    <%- end %>
+    <%- if alert %>
 		<p class="alert"><%= alert %></p>
-
+    <%- end %>
+    
 <%= yield %>
 
     </div>
