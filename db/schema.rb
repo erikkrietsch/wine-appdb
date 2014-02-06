@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140119200915) do
+ActiveRecord::Schema.define(version: 20140206024545) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -89,6 +89,13 @@ ActiveRecord::Schema.define(version: 20140119200915) do
     t.string   "wikiable_type"
     t.integer  "user_id"
     t.text     "content"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "wine_app_categories", force: true do |t|
+    t.string   "name"
+    t.integer  "wine_app_categories_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

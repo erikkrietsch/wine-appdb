@@ -57,9 +57,29 @@
           });
           jQuery('#descForm').bind('ajax:success', function(event, data, textStatus, xhr) { 
             console.debug(data);
-          })
+          });
 
         = submit_tag "Update", class: "btn btn-primary"
+        #descalert.alert.alert-success.fade.in(style="width: 50%; display: none;")
+          %button.close(type="button" data-dismiss="alert")
+            :plain
+              &times;
+          .message
+
+        :javascript
+          $('form#descForm').bind('ajax:success', 
+            function(evt, data, status, xhr){
+              console.log(data.message);
+              $alert = $('#descalert');
+              $msg = $('div:first.message', $alert);
+              $msg.text(data.message);
+              $alert.show();
+
+              setInterval(function() { $alert.hide(); }, 3000);
+            });
+          $('form#descForm').ajaxError(function(xhr, status, error) {
+            $('#descalert.message').text('Failed.');
+          });
 
   - if @wine_app.screenshots.count > 0
     %li 
