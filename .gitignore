@@ -31,3 +31,10 @@ config/aws.yml
 public/test/*
 .env
 public/assets/*
+
+# Ignore the bugzilla sql dumps
+/db/bugzilla/bugzilla.sql
+/db/bugzilla/*.gz
+
+# Ignore this OS X file
+*.DS_Store
