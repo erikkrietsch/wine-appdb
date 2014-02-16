@@ -10,6 +10,8 @@ gem 'unicorn'
 
 # Use postgresql as the database for Active Record
 gem 'pg'
+# Use mysql for the bugzilla db
+gem 'mysql'
 
 gem 'haml-rails'
 gem 'cucumber'
