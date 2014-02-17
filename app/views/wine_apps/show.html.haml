@@ -2,9 +2,16 @@
   if (appId) { appId = "#{@wine_app.id}"; }
 
 %h3= @wine_app.name
+- if user_signed_in?
+  = link_to 'Edit', edit_wine_app_path(@wine_app)
+  \|
+  = link_to ' X ', @wine_app, :method => :delete, :data => { :confirm => 'Are you sure?' }
+  \|
+  = link_to 'App List', wine_apps_path
 
 %ul
-  %li= @bug.short_desc
+
+
   = form_for @vote, url: wine_app_create_vote_path(@wine_app, format: :json), html: { id: "voteForm" }, remote: true, method: :post do |f| 
     %li 
       %b Difficulty
@@ -20,7 +27,6 @@
           &times;
       .message
 
-  %br
   %li 
     #vote_chart
     :javascript
@@ -82,15 +88,17 @@
             $('#descalert.message').text('Failed.');
           });
 
+  %li 
+    %b Problems
+    -if @wine_app.problems.count > 0
+      %ul
+        - @wine_app.problems.each do |p| 
+          %li= p.bug_report.bug.short_desc
+
   - if @wine_app.screenshots.count > 0
     %li 
       %b Screenshots
       %ul.thumbnails
         -@wine_app.screenshots.each do |ss|
           %li= link_to image_tag(ss.image.url(:thumb), class: "img-rounded"), wine_app_screenshot_path(@wine_app, ss)
-- if user_signed_in?
-  = link_to 'Edit', edit_wine_app_path(@wine_app)
-  \|
-  = link_to ' X ', @wine_app, :method => :delete, :data => { :confirm => 'Are you sure?' }
-  \|
-= link_to 'App List', wine_apps_path
+

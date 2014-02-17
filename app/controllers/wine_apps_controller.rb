@@ -12,7 +12,6 @@ class WineAppsController < ApplicationController
 
   def show
     @vote = @wine_app.votes.find_by(user_id: current_user) || Vote.new
-    @bug = Bug.find(1)
   end
 
   def edit
