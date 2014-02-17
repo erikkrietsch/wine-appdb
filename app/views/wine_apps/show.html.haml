@@ -4,6 +4,7 @@
 %h3= @wine_app.name
 
 %ul
+  %li= @bug.short_desc
   = form_for @vote, url: wine_app_create_vote_path(@wine_app, format: :json), html: { id: "voteForm" }, remote: true, method: :post do |f| 
     %li 
       %b Difficulty
