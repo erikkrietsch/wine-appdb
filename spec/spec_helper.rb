@@ -18,7 +18,7 @@ RSpec.configure do |config|
   config.include(EmailSpec::Helpers)
   config.include(EmailSpec::Matchers)
   config.expect_with :rspec do |c|
-    c.syntax = :expect
+    c.syntax = [:expect, :should]
   end
   # ## Mock Framework
   #

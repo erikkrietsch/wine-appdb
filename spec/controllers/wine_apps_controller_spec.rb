@@ -23,7 +23,7 @@ describe WineAppsController do
   # This should return the minimal set of attributes required to create a valid
   # WineApp. As you add validations to WineApp, be sure to
   # adjust the attributes here as well.
-  let(:valid_attributes) { {:name => "this name", :description => "honk"  } }
+  let(:valid_attributes) { {:name => "this name"  } }
   
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in
@@ -106,8 +106,8 @@ describe WineAppsController do
         # specifies that the WineApp created on the previous line
         # receives the :update_attributes message with whatever params are
         # submitted in the request.
-        WineApp.any_instance.should_receive(:update).with({"name" => "test name", "description" => "honk!"})
-        put :update, {:id => wine_app.to_param, :wine_app => {"name" => "test name", "description" => "honk!"}}, valid_session
+        WineApp.any_instance.should_receive(:update).with({"name" => "this name"})
+        put :update, {:id => wine_app.to_param, :wine_app => {"name" => "this name"}}, valid_session
       end
 
       it "assigns the requested wine_app as @wine_app" do
