@@ -105,7 +105,7 @@ ActiveRecord::Schema.define(version: 20140219033004) do
     t.integer  "bug_report_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "wine_versions_id"
+    t.integer  "wine_version_id"
   end
 
   create_table "wine_apps", force: true do |t|

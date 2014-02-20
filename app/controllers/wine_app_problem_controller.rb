@@ -1,5 +1,6 @@
 class WineAppProblemController < ApplicationController
   def index
+    @problems = @wine_app ? @wine_app.problems : WineAppProblem.all
   end
 
   def show
