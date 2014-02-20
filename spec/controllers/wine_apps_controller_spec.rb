@@ -106,8 +106,8 @@ describe WineAppsController do
         # specifies that the WineApp created on the previous line
         # receives the :update_attributes message with whatever params are
         # submitted in the request.
-        WineApp.any_instance.should_receive(:update).with({"name" => "this name"})
-        put :update, {:id => wine_app.to_param, :wine_app => {"name" => "this name"}}, valid_session
+        WineApp.any_instance.should_receive(:update).with(valid_attributes)
+        put :update, {:id => wine_app.to_param, :wine_app => valid_attributes}, valid_session
       end
 
       it "assigns the requested wine_app as @wine_app" do
