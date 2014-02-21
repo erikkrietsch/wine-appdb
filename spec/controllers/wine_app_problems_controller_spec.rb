@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe WineAppProblemController do
+describe WineAppProblemsController do
 
   describe "GET 'index'" do
     it "returns http success" do

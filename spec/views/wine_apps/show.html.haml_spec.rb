@@ -2,7 +2,8 @@ require 'spec_helper'
 
 describe "wine_apps/show" do
   before(:each) do
-    @wine_app = assign(:wine_app, stub_model(WineApp))
+    @user = assign(:user, FactoryGirl.build(:user))
+    @wine_app = assign(:wine_app, FactoryGirl.build(:wine_app))
   end
 
   it "renders attributes in <p>" do

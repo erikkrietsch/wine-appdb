@@ -1,10 +1,4 @@
 WineAppdb::Application.routes.draw do
-  get "wine_app_problem/index"
-  get "wine_app_problem/show"
-  get "wine_app_problem/edit"
-  get "wine_app_problem/update"
-  get "wine_app_problem/delete"
-  get "wine_app_problem/destroy"
   get "static/index"
   get "static/about"
   resources :screenshots
@@ -35,9 +29,9 @@ WineAppdb::Application.routes.draw do
     # resources :wine_instructions, controller: :wiki_entries, as: :wiki_entries
     post "wiki/:wiki_type", to: "wiki_entries#create"
     resources :descriptions, controller: :wiki_entries, as: :wiki_entries
-    resources :problems, controller: :wine_app_problem
+    resources :problems, controller: :wine_app_problems, as: :wine_app_problems
   end
-
+  resources :problems, controller: :wine_app_problems, as: :wine_app_problems
   resources :developers
 
   # set the root to the landing page
