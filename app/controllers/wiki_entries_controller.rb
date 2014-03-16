@@ -10,23 +10,24 @@ class WikiEntriesController < ApplicationController
     collection_name = params[:wiki_type]
     if %w[descriptions install_instructions wine_instructions].include?(collection_name)
       wiki_entry = WikiEntry.new
-      wiki_entry.content = params[:wiki_entry]
+      wiki_entry.content = params[:wiki_entry][:content]
       wiki_entry.user = current_user
+      wiki_entry.wiki_type = params[:wiki_entry][:type]
       wikiable.send(collection_name) << wiki_entry
       if wikiable.save
         respond_to do |format|
-          format.html { redirect_to @wikiable, notice: "Entry saved." }
+          format.html { redirect_to wikiable, notice: "Entry saved." }
           format.json { render json: { message: "Entry saved." }.to_json }
         end
       else
         respond_to do |format|
-          format.html { redirect_to @wikiable, notice: "Error saving entry: #{wiki_entry.errors.first}" }
+          format.html { redirect_to wikiable, notice: "Error saving entry: #{wiki_entry.errors.first}" }
           format.json { render json: { message: "Error saving entry: #{wiki_entry.errors.first}." }.to_json }
         end
       end
     else
       respond_to do |format|
-        format.html { redirect_to @wikiable, notice: "Error saving entry: Bad collection name."  }
+        format.html { redirect_to wikiable, notice: "Error saving entry: Bad collection name."  }
         format.json { render json: { message: "Error saving entry: Bad collection name." }.to_json }
       end      
     end

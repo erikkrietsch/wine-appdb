@@ -2,9 +2,9 @@ class WineApp < ActiveRecord::Base
   belongs_to :developer
   has_many :problems, class_name: "WineAppProblem"
   has_many :votes
-  has_many :descriptions, class_name: "WikiEntry", as: :wikiable
-  has_many :install_instructions, class_name: "WikiEntry", as: :wikiable
-  has_many :wine_instructions, class_name: "WikiEntry", as: :wikiable
+  has_many :descriptions, class_name: "WikiEntry", as: :wikiable, source: :wikiable, source_type: "WineAppDescription"
+  has_many :install_instructions, class_name: "WikiEntry", as: :wikiable, source: :wikiable, source_type: "WineAppInstallInstruction"
+  has_many :wine_instructions, class_name: "WikiEntry", as: :wikiable, source: :wikiable, source_type: "WineAppWineInstruction"
   has_many :screenshots
   validates :name, presence: true
   accepts_nested_attributes_for :screenshots

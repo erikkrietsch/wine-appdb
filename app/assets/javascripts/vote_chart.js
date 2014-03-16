@@ -9,10 +9,11 @@ var
   appId = -1;
 
 var options = {
-  width: 200, 
-  height: 150, 
+  width: 100, 
+  height: 75, 
   pointSize: 3,
   legend: "none",
+  chartArea: {left:0, top:0, width:"100%", height:"100%"},
   series: [{
     dataOpacity: 0.3,
     color: "#3366CC"

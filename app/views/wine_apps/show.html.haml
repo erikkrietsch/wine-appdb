@@ -1,23 +1,35 @@
 :javascript
   if (appId) { appId = "#{@wine_app.id}"; }
+%ol.breadcrumb
+  %li= link_to 'Apps', wine_apps_path
+  %li.active= @wine_app.name
 
-%h3= @wine_app.name
-- if user_signed_in?
-  = link_to 'Edit', edit_wine_app_path(@wine_app)
-  \|
-  = link_to ' X ', @wine_app, :method => :delete, :data => { :confirm => 'Are you sure?' }
-  \|
-  = link_to 'App List', wine_apps_path
+.page-header
+  %h1
+    =@wine_app.name
+    %small= @wine_app.developer.name if @wine_app.developer
+    #logo.placeholder
+    #vote_chart
+    :javascript
+      ready();
+    %a.btn.btn-default
+      %i.fa.fa-star-half-full
+  .btn-group.btn-group-lg
+    - if user_signed_in?
+      =link_to edit_wine_app_path(@wine_app.id), class: "btn btn-default btn-lg" do
+        %i.fa.fa-edit
+        Edit
+      =link_to @wine_app, class: "btn btn-default btn-lg", method: :delete, data: { confirm: 'Are you sure?' } do
+        %i.fa.fa-trash-o
 
-%ul
 
-
+.voteform
   = form_for @vote, url: wine_app_create_vote_path(@wine_app, format: :json), html: { id: "voteForm" }, remote: true, method: :post do |f| 
-    %li 
+    %p
       %b Difficulty
       = f.range_field :difficulty_value, { min: 0, max: 100, step: 1 }
 
-    %li 
+    %p 
       %b Quality
       = f.range_field :quality_value, { min: 0, max: 100, step: 1 }
     = submit_tag "Vote", class: "btn btn-primary"
@@ -26,11 +38,7 @@
         :plain
           &times;
       .message
-
-  %li 
-    #vote_chart
-    :javascript
-      ready();
+%ul
   %li
     %b Description
     [ 
@@ -44,7 +52,8 @@
     - if user_signed_in? 
 
       = form_for @wine_app, url: "/apps/#{@wine_app.id}/wiki/descriptions.json", html: {id: "descForm"}, remote: true, method: :post do |f|
-        = f.hidden_field :description, id: "hidDescription", name: "wiki_entry"
+        = f.hidden_field :description, id: "hidDescription", name: "wiki_entry[content]"
+        = hidden_field_tag "wiki_entry[type]", "description", id: "hidType"
 
         :javascript
           jQuery('#wiki').hallo({
@@ -93,7 +102,7 @@
     -if @wine_app.problems.count > 0
       %ul
         - @wine_app.problems.each do |p| 
-          %li= p.bug_report.bug.short_desc
+          %li= p.problem
 
   - if @wine_app.screenshots.count > 0
     %li 
