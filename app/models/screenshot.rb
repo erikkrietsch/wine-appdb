@@ -4,7 +4,7 @@ class Screenshot < ActiveRecord::Base
   has_attached_file :image, 
   bucket: "appdb_screenshots",
   styles: {
-    thumb: "100x100>",
+    thumb: "80x80>",
     square: "200x200#",
     medium: "300x300>"
   }

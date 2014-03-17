@@ -38,8 +38,7 @@ var options = {
   }
 };
 
-var ready;
-ready = function() {
+var ready = function() {
   fetchChartData();
   $('form#voteForm').bind('ajax:success', 
     function(evt, data, status, xhr){
@@ -81,7 +80,7 @@ function drawChart(data) {
   chartData.push( new google.visualization.DataTable(data.live_data) );
   
   if (chart==null) { 
-    chart = new google.visualization.ScatterChart(document.getElementById('vote_chart')); 
+    chart = new google.visualization.ScatterChart(document.getElementById('vote-chart')); 
   }
   // console.log('drawing chart...')
   chart.draw(chartData.last(), options);
