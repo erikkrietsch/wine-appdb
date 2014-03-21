@@ -1,56 +1,46 @@
 // Place all the styles related to the User controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-#logo.placeholder {
+
+#logo.app-logo {
 	/*vertical-align: top;*/
 	display: inline-block;
-	/*position: absolute;*/
-	width: 150px;
-	height: 100px;
-	text-align: center;
-	vertical-align: middle;
+	margin: auto 5px;
+	width: 120px;
 	color: rgba(0, 0, 0, 0.5);
 }
 
-.row.app-well {
-	/*vertical-align: middle;*/
-	/*text-align: center;*/
+.app-well {
+	display: inline-flex;
+	line-height: 1;
 }
+
+.well {
+	margin-bottom: 10px;
+}
+
+.vote-component {
+	display: inline-block;
+	margin: auto 3px;
+	width: 100px;
+}
+
 #vote-chart {
 	display: block;
 	width: 100px;
 	height: 75px;
+	border-radius: 3px;
 }
+
+.btn-vote {
+	line-height: 1;
+}
+
 .voteform {
-	position: absolute;
-/*	background-color: #F0F0F0;
-	padding:5px 10px;
-	margin: 4px; 
-	width: 300px;
-	-moz-border-radius: 5px;
-	-webkit-border-radius: 5px;
-	-moz-box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.25);
-	-webkit-box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.25);*/
-	-moz-transition: all 0.25s ease-in-out;
-	-webkit-transition: all 0.25s ease-in-out;
-	z-index: 100;
-	/* initial display is hidden */
 	display: none;
 }
 .voteform.show {
 	display: block;
-}
-#vote-button {
-	width: auto;
-	/*height: 15px;*/
-	display: inline-block;
-	vertical-align: middle;
-}
-
-.vote-container {
-	display: inline-block;
-	width: 100px;
-	height: 100px;
 }
 
 #edit-toolbar {
@@ -58,23 +48,29 @@
 }
 
 .screenshots {
-	display: inline;
-	/*vertical-align: top;*/
-	text-align: center;
-	width:auto;
+	display: inline-flex;
+	margin: auto 5px;
 }
 
-.thumbnail {
+.screenshot {
 	display: inline-block;
+	margin: auto 5px;
 }
+
+.add-screenshot small {
+	display: block;
+}
+
 .add-screenshot {
 	text-align: center;
-	vertical-align: middle;
-	width: 100px;
-	height: 100px;
 	color: rgba(0, 0, 0, 0.50);
 	cursor: default;
 }
+
 .add-screenshot:hover {
-	color: rgba(0, 0, 0, 1.0);
+	color: black;
+}
+
+div#well div { 
+	margin: auto 2px;
 }

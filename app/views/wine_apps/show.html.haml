@@ -1,14 +1,14 @@
 :javascript
   if (appId) { appId = "#{@wine_app.id}"; }
 %ol.breadcrumb
-  %li= link_to 'Apps', wine_apps_path
+  %li= link_to 'All Apps', wine_apps_path
   %li.active= @wine_app.name
 
 .page-header
   %h1
     =@wine_app.name
     %small= @wine_app.developer.name if @wine_app.developer
-    %span.btn-group.btn-group-sm#edit-toolbar
+    %span.btn-group#edit-toolbar
       - if user_signed_in?
         =link_to edit_wine_app_path(@wine_app.id), class: "btn btn-default" do
           %i.fa.fa-edit
@@ -16,37 +16,38 @@
           %i.fa.fa-trash-o
 
   .well.well-sm
-    .row.app-well
-      #logo.placeholder.thumbnail
+    .app-well
+      #logo.app-logo.well.well-sm.text-center
         %i.fa.fa-meh-o.fa-5x
         %br/
         If this app had a logo, this is where it'd go.
-      .vote-container.thumbnail
-        #vote-chart
-          &nbsp;
-        #vote-button
-          %a.btn.btn-default.btn-sm{onclick: "$(this).popover('toggle');", data: { toggle: "button", html: "true", placement: "right", content: "$('.voteform')"}}
-            -# onclick: "$('.voteform').toggleClass('show');", 
-            %i.fa.fa-star-half-full
-            Vote
-        %span.voteform
+      .vote-component.text-center.well.well-sm
+        %center
+          #vote-chart
+            &nbsp;
+      
+        %a.btn.btn-default.btn-sm.btn-block.btn-vote{ data: { placement: "bottom", toggle: "button" } }
+          %i.fa.fa-star-half-full
+          Vote
+        .voteform
           = form_for @vote, url: wine_app_create_vote_path(@wine_app, format: :json), html: { id: "voteForm" }, remote: true, method: :post do |f| 
-            %b Difficulty
+            %strong Difficulty
             = f.range_field :difficulty_value, { min: 0, max: 100, step: 1 }
             %br/
-            %b Quality
+            %strong Quality
             = f.range_field :quality_value, { min: 0, max: 100, step: 1 }
-            = submit_tag "Vote", class: "btn btn-primary"
-            #votealert.alert.alert-success.fade.in(style="width: 50%; display: none;")
-              %button.close(type="button" data-dismiss="alert")
-                :plain
-                  &times;
-              .message
+            %br/
+            = submit_tag "Vote", class: "btn btn-primary btn-block btn-sm"
+          #votealert.alert.alert-success.fade.in(style="width: 50%; display: none;")
+            %button.close(type="button" data-dismiss="alert")
+              :plain
+                &times;
+            .message
       .screenshots 
         - if @wine_app.screenshots.count > 0
           -@wine_app.screenshots.limit(3).each do |ss|
-            .thumbnail
-              = link_to image_tag(ss.image.url(:thumb), class: "img-rounded"), wine_app_screenshot_path(@wine_app, ss)
+            .screenshot
+              = link_to image_tag(ss.image.url(:thumb), class: "img-rounded thumbnail"), wine_app_screenshot_path(@wine_app, ss)
         .thumbnail.add-screenshot
           %i.fa.fa-plus-square.fa-5x
           %br/
@@ -110,8 +111,16 @@
 
               setInterval(function() { $alert.hide(); }, 3000);
             });
+          
           $('form#descForm').ajaxError(function(xhr, status, error) {
             $('#descalert.message').text('Failed.');
+          });
+
+          $('.btn-vote').popover({
+            html: true,
+            content: function() {
+              return $('.voteform').html();
+            }
           });
 
   %li 
