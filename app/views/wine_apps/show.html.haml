@@ -1,8 +1,6 @@
 :javascript
   if (appId) { appId = "#{@wine_app.id}"; }
-%ol.breadcrumb
-  %li= link_to 'All Apps', wine_apps_path
-  %li.active= @wine_app.name
+=render_breadcrumbs
 
 .page-header
   %h1
@@ -15,13 +13,13 @@
         =link_to @wine_app, class: "btn btn-default ", method: :delete, data: { confirm: 'Are you sure?' } do
           %i.fa.fa-trash-o
 
-  .well.well-sm
+  .well.well-sm.container-fluid
     .app-well
-      #logo.app-logo.well.well-sm.text-center
+      #logo.app-logo.well.well-sm.text-center.col-md-3
         %i.fa.fa-meh-o.fa-5x
         %br/
         If this app had a logo, this is where it'd go.
-      .vote-component.text-center.well.well-sm
+      .vote-component.text-center.well.well-sm.col-md-3
         %center
           #vote-chart
             &nbsp;
@@ -43,12 +41,12 @@
               :plain
                 &times;
             .message
-      .screenshots 
+      .screenshots.col-md-6 
         - if @wine_app.screenshots.count > 0
           -@wine_app.screenshots.limit(3).each do |ss|
             .screenshot
-              = link_to image_tag(ss.image.url(:thumb), class: "img-rounded thumbnail"), wine_app_screenshot_path(@wine_app, ss)
-        .thumbnail.add-screenshot
+              = link_to image_tag(ss.image.url(:thumb), class: "/*img-rounded img-thumbnail*/"), wine_app_screenshot_path(@wine_app, ss)
+        .thumbnail.add-screenshot.screenshot
           %i.fa.fa-plus-square.fa-5x
           %br/
           %small
@@ -56,79 +54,89 @@
 
 
 
-%ul
-  %li
-    %b Description
-    [ 
-    =link_to("History", wine_app_wiki_entries_path(@wine_app)) 
-    ]
+.well#tabs
+  %ul.nav.nav-pills
+    %li.active
+      %a{data: {toggle: "tab"}}(href="#tab-desc") Description
+    %li 
+      %a{data: {toggle: "tab"}}(href="#tab-probs") Known Problems
 
-    #wiki
-      :markdown
-        #{ @wine_app.description }
+  .tab-content
+    .tab-pane.fade.in.active#tab-desc
+      .page-header
+        %h3 
+          Description
+        %small 
+          [ 
+          =link_to("History", wine_app_wiki_entries_path(@wine_app)) 
+          ]
+      #wiki
+        :markdown
+          #{ @wine_app.description }
 
-    - if user_signed_in? 
+      - if user_signed_in? 
 
-      = form_for @wine_app, url: "/apps/#{@wine_app.id}/wiki/descriptions.json", html: {id: "descForm"}, remote: true, method: :post do |f|
-        = f.hidden_field :description, id: "hidDescription", name: "wiki_entry[content]"
-        = hidden_field_tag "wiki_entry[type]", "description", id: "hidType"
+        = form_for @wine_app, url: "/apps/#{@wine_app.id}/wiki/descriptions.json", html: {id: "descForm"}, remote: true, method: :post do |f|
+          = f.hidden_field :description, id: "hidDescription", name: "wiki_entry[content]"
+          = hidden_field_tag "wiki_entry[type]", "description", id: "hidType"
 
-        :javascript
-          jQuery('#wiki').hallo({
-            plugins: {
-              'halloformat': {},
-              'halloheadings': {},
-              'halloblock': {},
-              'hallojustify': {},
-              'hallolists': {},
-              'halloreundo': {}
-            },
-            toolbar: 'halloToolbarFixed'
-          });
-          jQuery('#wiki').bind('hallomodified', function(event, data) { 
-            // console.debug(toMarkdown(data.content));
-            jQuery('#hidDescription').val(toMarkdown(data.content)); 
-          });
-          jQuery('#descForm').bind('ajax:success', function(event, data, textStatus, xhr) { 
-            console.debug(data);
-          });
-
-        = submit_tag "Update", class: "btn btn-primary "
-        #descalert.alert.alert-success.fade.in(style="width: 50%; display: none;")
-          %button.close(type="button" data-dismiss="alert")
-            :plain
-              &times;
-          .message
-
-        :javascript
-          $('form#descForm').bind('ajax:success', 
-            function(evt, data, status, xhr){
-              console.log(data.message);
-              $alert = $('#descalert');
-              $msg = $('div:first.message', $alert);
-              $msg.text(data.message);
-              $alert.show();
-
-              setInterval(function() { $alert.hide(); }, 3000);
+          :javascript
+            jQuery('#wiki').hallo({
+              plugins: {
+                'halloformat': {},
+                'halloheadings': {},
+                'halloblock': {},
+                'hallojustify': {},
+                'hallolists': {},
+                'halloreundo': {}
+              },
+              toolbar: 'halloToolbarFixed'
             });
-          
-          $('form#descForm').ajaxError(function(xhr, status, error) {
-            $('#descalert.message').text('Failed.');
-          });
+            jQuery('#wiki').bind('hallomodified', function(event, data) { 
+              // console.debug(toMarkdown(data.content));
+              jQuery('#hidDescription').val(toMarkdown(data.content)); 
+            });
+            jQuery('#descForm').bind('ajax:success', function(event, data, textStatus, xhr) { 
+              console.debug(data);
+            });
 
-          $('.btn-vote').popover({
-            html: true,
-            content: function() {
-              return $('.voteform').html();
-            }
-          });
+          = submit_tag "Update", class: "btn btn-primary "
+          #descalert.alert.alert-success.fade.in(style="width: 50%; display: none;")
+            %button.close(type="button" data-dismiss="alert")
+              :plain
+                &times;
+            .message
 
-  %li 
-    %b Problems
-    -if @wine_app.problems.count > 0
-      %ul
-        - @wine_app.problems.each do |p| 
-          %li= p.problem
+          :javascript
+            $('form#descForm').bind('ajax:success', 
+              function(evt, data, status, xhr){
+                console.log(data.message);
+                $alert = $('#descalert');
+                $msg = $('div:first.message', $alert);
+                $msg.text(data.message);
+                $alert.show();
+
+                setInterval(function() { $alert.hide(); }, 3000);
+              });
+            
+            $('form#descForm').ajaxError(function(xhr, status, error) {
+              $('#descalert.message').text('Failed.');
+            });
+
+            $('.btn-vote').popover({
+              html: true,
+              content: function() {
+                return $('.voteform').html();
+              }
+            });
+
+    .tab-pane.fade#tab-probs
+      .page-header
+        %h3 Problems
+      -if @wine_app.problems.count > 0
+        %ul
+          - @wine_app.problems.each do |p| 
+            %li= p.problem
 :javascript
   ready();
 

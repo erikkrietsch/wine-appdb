@@ -5,16 +5,20 @@ class WineAppsController < ApplicationController
   before_action :set_wine_app, only: [:update, :show, :edit, :destroy]
   before_action :authenticate_user!, only: [:update, :edit, :destroy]
 
-
   def index
     @wine_apps = WineApp.order(:name) 
   end
 
   def show
+    add_breadcrumb "All Apps", wine_apps_path
+    add_breadcrumb @wine_app.name, :show
     @vote = @wine_app.votes.find_by(user_id: current_user) || Vote.new
   end
 
   def edit
+    add_breadcrumb "All Apps", wine_apps_path
+    add_breadcrumb @wine_app.name, @wine_app
+    add_breadcrumb "Edit", :edit
   end
 
   def new
