@@ -94,7 +94,8 @@ class WineAppsController < ApplicationController
         description = WikiEntry.new
         description.content = params[:wine_app][:description]
         description.user = current_user
-        @wine_app.descriptions << description
+        description.wiki_type = "description"
+        @wine_app.wiki_entries << description
       end
     end
 

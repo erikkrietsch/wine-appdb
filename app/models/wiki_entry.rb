@@ -14,7 +14,7 @@ class WikiEntry < ActiveRecord::Base
 
   private
     def wiki_entry_params
-      params.require(:wiki_entry).permit(:content)
+      params.require(:wiki_entry).permit(:content, :wiki_type)
     end
 
     def sanitize_content

@@ -3,9 +3,8 @@ class WineAppProblem < ActiveRecord::Base
   belongs_to :bug_report
   belongs_to :wine_app
   belongs_to :wine_version
-  has_many :problems, class_name: "ProblemEntry", as: :wikiable
-  has_many :workarounds, class_name: "WikiEntry", as: :wikiable
-
+  has_many :wiki_entries, class_name: "WikiEntry", as: :wikiable
+  
   validates :wine_version, presence: true
   
   def create
@@ -23,6 +22,18 @@ class WineAppProblem < ActiveRecord::Base
   private
     def wineapp_problem_params
       require(:wine_app_problem).permit(:problem, :workaround, :wine_version)
+    end
+
+    def wiki_entries_type(wiki_type)
+      wiki_entries.where(:wiki_type => wiki_type)
+    end
+
+    def problems
+      wiki_entries_type("problem")
+    end
+
+    def workarounds
+      wiki_entries_type("workaround")
     end
 end
 

@@ -55,8 +55,13 @@ FactoryGirl.define do
     # association :wine_app
     bug_report
     after(:build) do |problem, evaluator|
-      problem.problems = FactoryGirl.build_list(:wiki_entry, evaluator.prob_count)
-      problem.workarounds = FactoryGirl.build_list(:wiki_entry, evaluator.workaround_count)
+      problem.wiki_entries = FactoryGirl.build_list(:wiki_entry, evaluator.prob_count + evaluator.workaround_count)
+      evaluator.prob_count.times do |i|
+        problem.wiki_entries[i].wiki_type = "problem"
+      end
+      evaluator.workaround_count.times do |i|
+        problem.wiki_entries[i].wiki_type = "workaround"
+      end
     end
   end
 
