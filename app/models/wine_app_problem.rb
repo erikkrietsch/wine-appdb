@@ -11,6 +11,14 @@ class WineAppProblem < ActiveRecord::Base
     WineAppProblem.create(wineapp_problem_params)
   end
 
+  def problems
+    wiki_entries_type("problem")
+  end
+
+  def workarounds
+    wiki_entries_type("workaround")
+  end
+
   def problem
     problems.order(updated_at: :desc).first
   end
@@ -25,15 +33,9 @@ class WineAppProblem < ActiveRecord::Base
     end
 
     def wiki_entries_type(wiki_type)
-      wiki_entries.where(:wiki_type => wiki_type)
+      wiki_entries.where(wiki_type: wiki_type)
     end
 
-    def problems
-      wiki_entries_type("problem")
-    end
 
-    def workarounds
-      wiki_entries_type("workaround")
-    end
 end
 

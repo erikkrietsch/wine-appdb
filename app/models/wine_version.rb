@@ -7,4 +7,8 @@ class WineVersion < BugzillaBase
   def WineVersion.recent
     self.all.order(id: :desc).limit(5)
   end
+
+  def WineVersion.most_recent
+    self.recent.limit(1).first
+  end
 end

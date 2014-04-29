@@ -47,6 +47,20 @@ FactoryGirl.define do
     association :user, strategy: :build
   end
 
+  factory :wiki_problem, class: WikiEntry do
+    content { ["who", "what", "when", "where", "how many"].sample }
+    wiki_type "problem"
+  end
+
+  factory :wiki_workaround, class: WikiEntry do
+    content { ["why", "when", "intent", "desire", "motive"].sample }
+    wiki_type "workaround"
+  end
+
+  factory :wine_version do
+    WineVersion.most_recent
+  end
+
   factory :wine_app_problem do
     ignore do
       prob_count 5
@@ -54,14 +68,10 @@ FactoryGirl.define do
     end
     # association :wine_app
     bug_report
+    wine_version WineVersion.most_recent
     after(:build) do |problem, evaluator|
-      problem.wiki_entries = FactoryGirl.build_list(:wiki_entry, evaluator.prob_count + evaluator.workaround_count)
-      evaluator.prob_count.times do |i|
-        problem.wiki_entries[i].wiki_type = "problem"
-      end
-      evaluator.workaround_count.times do |i|
-        problem.wiki_entries[i].wiki_type = "workaround"
-      end
+      problem.wiki_entries = FactoryGirl.build_list(:wiki_problem, evaluator.prob_count)
+      problem.wiki_entries << FactoryGirl.build_list(:wiki_workaround, evaluator.workaround_count)
     end
   end
 
