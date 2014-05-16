@@ -12,6 +12,8 @@
           %i.fa.fa-edit
         =link_to @wine_app, class: "btn btn-default ", method: :delete, data: { confirm: 'Are you sure?' } do
           %i.fa.fa-trash-o
+        %a#trash-btn.btn.btn-default{ href: '#', data: { toggle: "popover", content: "what" } }
+          %i.fa.fa-ellipsis-h
 
   .well.well-sm.container-fluid
     .app-well
@@ -81,7 +83,7 @@
           = hidden_field_tag "wiki_entry[type]", "description", id: "hidType"
 
           :javascript
-            jQuery('#wiki').hallo({
+            $('#wiki').hallo({
               plugins: {
                 'halloformat': {},
                 'halloheadings': {},
@@ -125,9 +127,13 @@
 
             $('.btn-vote').popover({
               html: true,
+              title: 'Vote',
               content: function() {
                 return $('.voteform').html();
               }
+            });
+            $('#trash-btn').popover({
+              container: 'body'
             });
 
     .tab-pane.fade#tab-probs

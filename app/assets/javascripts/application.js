@@ -13,7 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 // Take this out and replace with specific components before launching prod site.
-//= require jquery.ui.all
+//= #require jquery.ui.all
 //= require twitter/bootstrap
 //= require rangy-core
 //= require hallo

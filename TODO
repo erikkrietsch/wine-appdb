@@ -11,15 +11,12 @@ spend an hour on markdown interpretation by to-markdown.js
 implement search functionality. Sunspot?
 
 figure out CSS diffs (between winehq.org) on sidebar
-clean up Hallo toolbar styles
+drop Hallo in favor of straight Markdown editing with preview
 clean up app screenshots view; add gallery
 clean up App show view
 
 flag screenshots as inappropriate
 lock down screenshots#index (no editing for unregistered users)
-
-associate bug reports with Apps (:has_many_through => WineAppProblems )
-populate bug reports table with mock data
 
 create custom devise views
 spruce up landing page

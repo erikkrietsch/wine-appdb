@@ -8,6 +8,7 @@ class Screenshot < ActiveRecord::Base
     square: "200x200#",
     medium: "300x300>"
   }
+  validates_attachment_content_type :image, :content_type => ["image/jpg", "image/jpeg", "image/png", "image/gif"]
   validates :title, presence: true
   validates :image, presence: true
 

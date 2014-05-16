@@ -57,6 +57,21 @@ FactoryGirl.define do
     wiki_type "workaround"
   end
 
+  factory :wiki_desc, class: WikiEntry do
+    content { ["desc1", "desc2", "desc3", "desc4", "one more desc"].sample }
+    wiki_type "description"
+  end
+
+  factory :wiki_install_instruction, class: WikiEntry do
+    content { ["inst1", "inst2", "inst3", "inst4", "one more inst"].sample }
+    wiki_type "install_instruction"
+  end
+
+  factory :wiki_wine_instruction, class: WikiEntry do
+    content { ["wine1", "wine2", "wine3", "wine4", "one more wine"].sample }
+    wiki_type "wine_instruction"
+  end
+
   factory :wine_version do
     WineVersion.most_recent
   end
@@ -92,10 +107,10 @@ FactoryGirl.define do
     end
     name "TestApp1"
     after(:build) do |wine_app, evaluator|
-      wine_app.descriptions = FactoryGirl.build_list(:wiki_entry, evaluator.desc_count)
-      wine_app.install_instructions = FactoryGirl.build_list(:wiki_entry, evaluator.inst_count)
-      wine_app.wine_instructions = FactoryGirl.build_list(:wiki_entry, evaluator.wine_count)
-      wine_app.problems = FactoryGirl.build_list(:wine_app_problem, evaluator.problem_count)
+      wine_app.wiki_entries << FactoryGirl.build_list(:wiki_desc, evaluator.desc_count)
+      wine_app.wiki_entries << FactoryGirl.build_list(:wiki_install_instruction, evaluator.inst_count)
+      wine_app.wiki_entries << FactoryGirl.build_list(:wiki_wine_instruction, evaluator.wine_count)
+      wine_app.problems << FactoryGirl.build_list(:wine_app_problem, evaluator.problem_count)
     end
     # association :developer
     

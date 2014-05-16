@@ -47,7 +47,6 @@ gem 'turbolinks'
 gem 'font-awesome-rails'
 gem 'hallo-rails', github: 'ErikTRSI/hallo-rails'
 
-# I'm making this decision consciously, and of my own volition.
 gem 'less-rails'
 gem 'twitter-bootstrap-rails'
 
@@ -60,9 +59,6 @@ gem 'jbuilder', '~> 1.2'
 # Paperclip to handle screenshot uploads
 gem 'paperclip'
 
-# For populating data elements as needed
-gem 'seed-fu', github: 'mbleigh/seed-fu'
-
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false
@@ -72,6 +68,8 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'factory_girl_rails', require: false
   gem 'pry'
+  # For populating data elements as needed
+  gem 'seed-fu', github: 'mbleigh/seed-fu'
 end
 
 group :test do
