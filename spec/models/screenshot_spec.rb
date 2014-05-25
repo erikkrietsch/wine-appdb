@@ -9,4 +9,9 @@ describe Screenshot do
     expect(bad_screenshot.errors[:image].first).to_not be_nil
   end
 
+  it "should upload a file to AWS" do
+    
+  end
+
+
 end

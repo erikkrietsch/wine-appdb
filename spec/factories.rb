@@ -36,10 +36,10 @@ FactoryGirl.define do
   end
 
   factory :screenshot do
-    url "http://appdb.winehq.org/appimage.php?iId=38176"
-    title "fun stuff!"
-    association :wine_app, strategy: :build
-    association :user, strategy: :build
+    image "http://i.imgur.com/xkxS0TS.jpg"
+    title "doge"
+    association :wine_app, strategy: :create
+    association :user, strategy: :create
   end
 
   factory :wiki_entry do
