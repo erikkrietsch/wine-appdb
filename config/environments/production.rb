@@ -78,17 +78,6 @@ WineAppdb::Application.configure do
   # Use default logging formatter so that PID and timestamp are not suppressed.
   config.log_formatter = ::Logger::Formatter.new
 
-  # peep dis: https://devcenter.heroku.com/articles/paperclip-s3
-  config.paperclip_defaults = {
-    storage: :s3,
-    s3_protocol: "http",
-    s3_credentials: {
-      bucket: ENV['BUCKET'],
-      access_key_id: ENV['AWS_ACCESS_KEY_ID'],
-      secret_access_key: ENV['AWS_SECRET_ACCESS_KEY']
-    }
-  }
-
   # This is as described for Devise minimum configuration.
   config.action_mailer.default_url_options = { :host => 'wine-appdb.herokuapp.com' }
   config.action_mailer.delivery_method = :smtp

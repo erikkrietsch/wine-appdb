@@ -30,5 +30,23 @@ module WineAppdb
       g.javascripts = false
       g.helper = false
     end
+
+    # peep dis: https://devcenter.heroku.com/articles/paperclip-s3
+    # environment variables set in config/aws.yml
+    config.paperclip_defaults = {
+      storage: :s3,
+      s3_protocol: "http",
+      s3_credentials: {
+        bucket: ENV['BUCKET'],
+        access_key_id: ENV['AWS_ACCESS_KEY_ID'],
+        secret_access_key: ENV['AWS_SECRET_ACCESS_KEY']
+      }
+    }
+
+    console do
+      # this block is called only when running console, # so we can safely require pry here
+      require "pry"
+      config.console = Pry
+    end
   end
 end

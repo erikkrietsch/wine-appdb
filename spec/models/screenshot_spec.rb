@@ -9,4 +9,9 @@ describe Screenshot do
     expect(bad_screenshot.errors[:image].first).to_not be_nil
   end
 
+  it "should have a working image url" do
+  	expect(screenshot.image.url).to_not be_nil
+  end
+
+
 end

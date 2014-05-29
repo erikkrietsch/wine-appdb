@@ -36,8 +36,8 @@ FactoryGirl.define do
   end
 
   factory :screenshot do
-    url "http://appdb.winehq.org/appimage.php?iId=38176"
-    title "fun stuff!"
+    image "http://euotopia.com/manual/images/e/e1/Happycat.jpg"
+    title "the happiest of cats"
     association :wine_app, strategy: :build
     association :user, strategy: :build
   end

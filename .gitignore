@@ -35,6 +35,8 @@ public/assets/*
 # Ignore the bugzilla sql dumps
 /db/bugzilla/bugzilla.sql
 /db/bugzilla/*.gz
+/db/bugzilla/*.tar*
 
 # Ignore this OS X file
 *.DS_Store
+
