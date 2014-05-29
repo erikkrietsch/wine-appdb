@@ -38,8 +38,8 @@ FactoryGirl.define do
   factory :screenshot do
     image "http://euotopia.com/manual/images/e/e1/Happycat.jpg"
     title "the happiest of cats"
-    association :wine_app, strategy: :build
-    association :user, strategy: :build
+    association :wine_app, strategy: :create
+    association :user, strategy: :create
   end
 
   factory :wiki_entry do
