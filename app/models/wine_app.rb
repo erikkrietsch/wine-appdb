@@ -5,9 +5,14 @@ class WineApp < ActiveRecord::Base
   has_many :wiki_entries, class_name: "WikiEntry", as: :wikiable, source: :wikiable
   has_many :screenshots
   validates :name, presence: true
+  validates :slug, presence: true
   accepts_nested_attributes_for :screenshots
   def create
     WineApp.create(wineapp_params)
+  end
+
+  def to_param
+    return slug
   end
 
   def descriptions
@@ -24,6 +29,12 @@ class WineApp < ActiveRecord::Base
 
   def description
     descriptions.order(updated_at: :desc).first.to_s || ""
+  end
+
+  def name=(value)
+    super
+    self.slug = value.parameterize  
+    return self.name
   end
 
   private

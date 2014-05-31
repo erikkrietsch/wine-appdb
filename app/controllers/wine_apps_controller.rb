@@ -72,13 +72,9 @@ class WineAppsController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
-    def set_wine_app
-      begin
-        @wine_app = WineApp.find(params[:id])
-      rescue PG::NumericValueOutOfRange, ActiveRecord::RecordNotFound
-        redirect_to wine_apps_url, notice: "App not found."
-      end
-    end
+    def set_wine_app 
+      @wine_app ||= find_wine_app
+    end 
 
     def set_wine_app_screenshot
       return unless params[:screenshot]

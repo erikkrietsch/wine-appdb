@@ -72,8 +72,4 @@ class ScreenshotsController < ApplicationController
     def screenshot_params
       params[:screenshot]
     end
-
-    def find_wine_app
-      @wine_app = WineApp.find(params[:wine_app_id])
-    end
 end

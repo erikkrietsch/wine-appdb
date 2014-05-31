@@ -17,29 +17,28 @@ WineAppdb::Application.routes.draw do
   # alias the wine_apps controller
   resources :apps, controller: :wine_apps, as: :wine_apps do
 
-  # resources :wine_apps do
     resource :developer
     resources :screenshots
+
     post "vote", to: "votes#create", as: :create_vote
     patch "vote",  to: "votes#create", as: :update_vote
-    get "votes", to: "votes#index"
-    # get "vote", to: "votes#index", as: :vote_index
+    get "votes", to: "votes#index", as: :vote_index
     
-    # resources :install_instructions, controller: :wiki_entries, as: :wiki_entries
-    # resources :wine_instructions, controller: :wiki_entries, as: :wiki_entries
-    post "wiki/:wiki_type", to: "wiki_entries#create"
-    resources :descriptions, controller: :wiki_entries, as: :wiki_entries
-    resources :problems, controller: :wine_app_problems, as: :wine_app_problems
+    post "wiki/:wiki_type", to: "wiki_entries#create", as: :create_wiki
+    resources :install_instructions, controller: :wiki_entries, as: :install_instructions
+    resources :wine_instructions, controller: :wiki_entries, as: :wine_instructions
+    resources :descriptions, controller: :wiki_entries, as: :descriptions
+    resources :problems, controller: :wine_app_problems, as: :problems
   end
-  resources :problems, controller: :wine_app_problems, as: :wine_app_problems
-  resources :developers
+  resources :problems, controller: :wine_app_problems, as: :problems
+  resources :developers, as: :developers
 
   # set the root to the landing page
-  root 'static#index'
+  root "static#index"
   
   get "prefs", to: "user#show"
+  get "profile", to: "user#show", as: :profile
 
-  get 'profile', to: 'user#show'
   # get "app", to: "wine_apps#show"
   # post 'app', to: 'wine_apps#create'
 

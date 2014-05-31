@@ -23,7 +23,7 @@ class WineAppProblemsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_wine_app_problems
-        @wine_app = WineApp.find_by_id(params[:wine_app_id])
+        @wine_app ||= find_wine_app
         @problems = @wine_app ? @wine_app.problems : WineAppProblem.all
     end
 

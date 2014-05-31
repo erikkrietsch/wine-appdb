@@ -1,6 +1,6 @@
 class VotesController < ApplicationController
   before_action :find_vote, only: [:create]
-  before_action :find_wineapp, only: [:index]
+  before_action :set_wine_app, only: [:index]
   
   def create
     @vote ||= Vote.new
@@ -36,7 +36,7 @@ class VotesController < ApplicationController
     end
 
     def find_vote
-      find_wineapp
+      set_wine_app
       if user_signed_in?
         @vote = @wine_app.votes.find_by(user_id: current_user)
       else
@@ -44,8 +44,8 @@ class VotesController < ApplicationController
       end
     end
 
-    def find_wineapp
-      @wine_app = WineApp.find(params[:wine_app_id])
+    def set_wine_app
+      @wine_app ||= find_wine_app
     end
 
     # because this is a bit hard to read: we first have a definition of the columns to be presented in the vote_chart
@@ -56,7 +56,7 @@ class VotesController < ApplicationController
     # that data to preserve the original reference, and then applying "0" where there once was a voted value. We'll first draw
     # the chart with the zeroed-out values, and then after a delay, draw the chart with the actual data to get an animated effect. 
     def prepare_votes_json
-      @wine_app || find_wineapp 
+      set_wine_app 
       live_data = Hash.new
       live_data[:cols] = [
                         {id: "difficulty", label: "Difficulty", type: "number"},
