@@ -1,10 +1,11 @@
 class ScreenshotsController < ApplicationController
-  before_action :set_screenshot, only: [:show, :edit, :update, :destroy]
   before_action :find_wine_app, only: [:show, :edit, :update, :index]
+  before_action :set_screenshot, only: [:show, :edit, :update, :destroy]
+
   # GET /screenshots
   # GET /screenshots.json
   def index
-    @screenshots = @wine_app.screenshots
+    @screenshots = @wine_app ? @wine_app.screenshots : Screenshot.all.to_a
   end
 
   # GET /screenshots/1

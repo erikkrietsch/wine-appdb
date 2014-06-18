@@ -6,7 +6,7 @@ describe ScreenshotsController do
   # This should return the minimal set of attributes required to create a valid
   # Screenshot. As you add validations to Screenshot, be sure to
   # adjust the attributes here as well.
-  let(:valid_attributes) { {  } }
+  let(:valid_attributes) { { title: "heyo", image: "http://www.gravatar.com/avatar/c0eff8d4d70a5974ec26d17b747e7616.png" } }
 
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in
@@ -14,20 +14,26 @@ describe ScreenshotsController do
   let(:valid_session) { { } }
 
   let(:screenshot) { FactoryGirl.create(:screenshot) }
+  let(:screenshots) { FactoryGirl.create_list(:screenshot, 2) }
 
   describe "GET index" do
-    it "assigns all screenshots as @screenshots" do
-      get :index, {wine_app_id: screenshot.wine_app.id }
-      binding.pry
-      assigns(:screenshots).should eq([screenshot])
+    it "assigns all WineApp screenshots as @screenshots when nested under a wine_app" do
+      get :index, {wine_app_id: screenshot.wine_app.slug }
+      expect(assigns(:screenshots)).to eq([screenshot])
+    end
+
+    it "assigns all screenshots as @screenshots when not fed a wine_app_id" do
+      if screenshots
+        get :index
+        expect(assigns(:screenshots)).to eq(screenshots)
+      end
     end
   end
 
   describe "GET show" do
     it "assigns the requested screenshot as @screenshot" do
-      screenshot = Screenshot.create! valid_attributes
-      get :show, {:id => screenshot.to_param}, valid_session
-      assigns(:screenshot).should eq(screenshot)
+      get :show, {id: screenshot.to_param, wine_app_id: screenshot.wine_app.slug }, valid_session
+      expect(assigns(:screenshot)).to eq(screenshot)
     end
   end
 

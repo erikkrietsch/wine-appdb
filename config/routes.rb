@@ -17,8 +17,7 @@ WineAppdb::Application.routes.draw do
   # alias the wine_apps controller
   resources :apps, controller: :wine_apps, as: :wine_apps do
 
-    resource :developer
-    resources :screenshots
+    resources :screenshots, only: :index
 
     post "vote", to: "votes#create", as: :create_vote
     patch "vote",  to: "votes#create", as: :update_vote

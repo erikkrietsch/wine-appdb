@@ -1,3 +1,4 @@
+include ActionDispatch::TestProcess
 require 'digest/sha1'
 
 FactoryGirl.define do
@@ -19,25 +20,31 @@ FactoryGirl.define do
   end
 
   factory :user do
-    ignore do
-      vote_count 8
-      ss_count 3
-    end
     name "Heinrich Q. Test-eaze"
-    email "hank@testease.info"
+    sequence(:email) { |n| "hank#{n}@testease.info"}
     password "password"
 
     factory :user_with_votes do
+      ignore do
+        vote_count 8
+      end
       after(:build) do |user, evaluator|
         user.votes = FactoryGirl.build_list(:vote, evaluator.vote_count)
+      end
+    end
+    factory :user_with_screenshots do
+      ignore do
+        ss_count 3
+      end
+      after(:build) do |user, evaluator|
         user.screenshots = FactoryGirl.build_list(:screenshot, evaluator.ss_count)
       end
     end
   end
 
   factory :screenshot do
-    image "http://euotopia.com/manual/images/e/e1/Happycat.jpg"
-    title "the happiest of cats"
+    image { fixture_file_upload(Rails.root.join('spec', 'images', 'butts.gif'), 'image/gif') }
+    title "butts."
     association :wine_app, strategy: :create
     association :user, strategy: :create
   end
@@ -98,19 +105,21 @@ FactoryGirl.define do
   end
 
 
-  factory :wine_app do
-    ignore do
-      desc_count 5
-      inst_count 4
-      wine_count 6
-      problem_count 15
-    end
-    name "TestApp1"
-    after(:build) do |wine_app, evaluator|
-      wine_app.wiki_entries << FactoryGirl.build_list(:wiki_desc, evaluator.desc_count)
-      wine_app.wiki_entries << FactoryGirl.build_list(:wiki_install_instruction, evaluator.inst_count)
-      wine_app.wiki_entries << FactoryGirl.build_list(:wiki_wine_instruction, evaluator.wine_count)
-      wine_app.problems << FactoryGirl.build_list(:wine_app_problem, evaluator.problem_count)
+  factory :wine_app do    
+    sequence(:name) { |n| "TestApp#{n}" }
+    factory :full_wine_app do 
+      ignore do
+        desc_count 5
+        inst_count 4
+        wine_count 6
+        problem_count 15
+      end
+      after(:build) do |wine_app, evaluator|
+        wine_app.wiki_entries << FactoryGirl.build_list(:wiki_desc, evaluator.desc_count)
+        wine_app.wiki_entries << FactoryGirl.build_list(:wiki_install_instruction, evaluator.inst_count)
+        wine_app.wiki_entries << FactoryGirl.build_list(:wiki_wine_instruction, evaluator.wine_count)
+        wine_app.problems << FactoryGirl.build_list(:wine_app_problem, evaluator.problem_count)
+      end
     end
     # association :developer
     
