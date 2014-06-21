@@ -43,10 +43,15 @@ FactoryGirl.define do
   end
 
   factory :screenshot do
-    image { fixture_file_upload(Rails.root.join('spec', 'images', 'butts.gif'), 'image/gif') }
+    image_file_name "butts.gif"
+    image_content_type "image/gif"
+    image_file_size 1024
     title "butts."
-    association :wine_app, strategy: :create
     association :user, strategy: :create
+    factory :screenshot_with_wine_app do
+      association :wine_app, strategy: :create
+    end
+
   end
 
   factory :wiki_entry do

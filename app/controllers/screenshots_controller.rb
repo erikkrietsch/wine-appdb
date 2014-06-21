@@ -1,5 +1,5 @@
 class ScreenshotsController < ApplicationController
-  before_action :find_wine_app, only: [:show, :edit, :update, :index]
+  before_action :find_wine_app
   before_action :set_screenshot, only: [:show, :edit, :update, :destroy]
 
   # GET /screenshots
@@ -43,6 +43,7 @@ class ScreenshotsController < ApplicationController
   # PATCH/PUT /screenshots/1.json
   def update
     respond_to do |format|
+      binding.pry
       if @screenshot.update(screenshot_params)
         format.html { redirect_to @screenshot, notice: 'Screenshot was successfully updated.' }
         format.json { head :no_content }
@@ -58,7 +59,7 @@ class ScreenshotsController < ApplicationController
   def destroy
     @screenshot.destroy
     respond_to do |format|
-      format.html { redirect_to wine_app_path(@screenshot.wine_app_id) }
+      format.html { redirect_to (@wine_app ? wine_app_path(@wine_app) : :screenshots) }
       format.json { head :no_content }
     end
   end
