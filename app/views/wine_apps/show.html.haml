@@ -28,7 +28,7 @@
           %i.fa.fa-star-half-full
           Vote
         .voteform
-          = form_for @vote, url: wine_app_create_vote_path(@wine_app, format: :json), html: { id: "voteForm" }, remote: true, method: :post do |f| 
+          = form_for @vote, url: wine_app_votes_path(@wine_app, format: :json), html: { id: "voteForm" }, remote: true, method: :post do |f| 
             %strong Difficulty
             = f.range_field :difficulty_value, { min: 0, max: 100, step: 1 }
             %br/
@@ -76,7 +76,7 @@
 
       - if user_signed_in? 
 
-        = form_for @wine_app, wine_app_create_wiki_path(@wine_app, wiki_type: "descriptions"), html: {id: "descForm"}, remote: true, method: :post do |f|
+        = form_for wine_app_wiki_entries_path(@wine_app, wiki_type: "descriptions"), html: {id: "descForm"}, remote: true, method: :post do |f|
           = f.hidden_field :description, id: "hidDescription", name: "wiki_entry[content]"
           = hidden_field_tag "wiki_entry[type]", "description", id: "hidType"
 

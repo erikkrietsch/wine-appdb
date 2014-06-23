@@ -17,13 +17,15 @@ WineAppdb::Application.routes.draw do
   # alias the wine_apps controller
   resources :apps, controller: :wine_apps, as: :wine_apps do
 
-    resources :screenshots, only: :index
+    resources :screenshots
 
-    post "vote", to: "votes#create", as: :create_vote
-    patch "vote",  to: "votes#create", as: :update_vote
-    get "votes", to: "votes#index", as: :vote_index
+    # post "vote", to: "votes#create", as: :create_vote
+    # patch "vote",  to: "votes#create", as: :update_vote
+    # get "votes", to: "votes#index", as: :vote_index
+    resources :votes, only: [:index, :create, :update]
     
-    post "wiki/:wiki_type", to: "wiki_entries#create", as: :create_wiki
+    # post "wiki/:wiki_type", to: "wiki_entries#create", as: :create_wiki
+    resources :wiki_entries, only: [:create]
     resources :install_instructions, controller: :wiki_entries, as: :install_instructions
     resources :wine_instructions, controller: :wiki_entries, as: :wine_instructions
     resources :descriptions, controller: :wiki_entries, as: :descriptions

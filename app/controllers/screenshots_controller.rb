@@ -24,44 +24,30 @@ class ScreenshotsController < ApplicationController
   end
 
   # POST /screenshots
-  # POST /screenshots.json
   def create
     @screenshot = Screenshot.new(screenshot_params)
 
-    respond_to do |format|
-      if @screenshot.save
-        format.html { redirect_to @screenshot, notice: 'Screenshot was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @screenshot }
-      else
-        format.html { render action: 'new' }
-        format.json { render json: @screenshot.errors, status: :unprocessable_entity }
-      end
+    if @screenshot.save
+      redirect_to @screenshot, notice: 'Screenshot was successfully created.'
+    else
+      render action: 'new'
     end
   end
 
   # PATCH/PUT /screenshots/1
-  # PATCH/PUT /screenshots/1.json
   def update
-    respond_to do |format|
-      binding.pry
-      if @screenshot.update(screenshot_params)
-        format.html { redirect_to @screenshot, notice: 'Screenshot was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: 'edit' }
-        format.json { render json: @screenshot.errors, status: :unprocessable_entity }
-      end
+    binding.pry
+    if @screenshot.update(screenshot_params)
+      redirect_to @screenshot, notice: 'Screenshot was successfully updated.'
+    else
+      render action: 'edit'
     end
   end
 
   # DELETE /screenshots/1
-  # DELETE /screenshots/1.json
   def destroy
     @screenshot.destroy
-    respond_to do |format|
-      format.html { redirect_to (@wine_app ? wine_app_path(@wine_app) : :screenshots) }
-      format.json { head :no_content }
-    end
+    redirect_to (@wine_app ? wine_app_path(@wine_app) : :screenshots)
   end
 
   private
