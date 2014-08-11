@@ -4,6 +4,7 @@ class WineApp < ActiveRecord::Base
   has_many :votes
   has_many :wiki_entries, class_name: "WikiEntry", as: :wikiable, source: :wikiable
   has_many :screenshots
+  has_one :logo
   validates :name, presence: true
   validates :slug, presence: true
   accepts_nested_attributes_for :screenshots
