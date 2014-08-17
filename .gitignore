@@ -40,3 +40,4 @@ public/assets/*
 # Ignore this OS X file
 *.DS_Store
 
+public/system/
