@@ -31,6 +31,7 @@ class WineAppsController < ApplicationController
     @wine_app = WineApp.new(wine_app_params)
     set_wine_app_description
     set_wine_app_screenshot
+    set_wine_app_logo
     respond_to do |format|
       if @wine_app.save
         # unless wine_app.developer 
@@ -49,6 +50,7 @@ class WineAppsController < ApplicationController
   def update
     set_wine_app_description
     set_wine_app_screenshot
+    set_wine_app_logo
     respond_to do |format|
       if @wine_app.update(wine_app_params)
         format.html { redirect_to @wine_app, notice: 'App was successfully updated.' }
@@ -75,6 +77,14 @@ class WineAppsController < ApplicationController
     def set_wine_app 
       @wine_app ||= find_wine_app
     end 
+
+    def set_wine_app_logo
+      return unless params[:logo]
+      logo = Logo.new
+      logo.image = params[:logo]
+      logo.user = current_user
+      @wine_app.logo = logo
+    end
 
     def set_wine_app_screenshot
       return unless params[:screenshot]

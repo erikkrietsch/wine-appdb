@@ -14,11 +14,14 @@
           %i.fa.fa-trash-o
 
   .well.well-sm.container-fluid
-    .app-well
+    .app-well.row
       #logo.app-logo.well.well-sm.text-center.col-md-3
-        %i.fa.fa-meh-o.fa-5x
-        %br/
-        If this app had a logo, this is where it'd go.
+        - if @wine_app.logo
+          =image_tag(@wine_app.logo.image.url(:thumb))
+        - else
+          %i.fa.fa-meh-o.fa-5x
+          %br/
+          If this app had a logo, this is where it'd go.
       .vote-component.text-center.well.well-sm.col-md-3
         %center
           #vote-chart

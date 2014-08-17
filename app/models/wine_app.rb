@@ -8,6 +8,7 @@ class WineApp < ActiveRecord::Base
   validates :name, presence: true
   validates :slug, presence: true
   accepts_nested_attributes_for :screenshots
+  accepts_nested_attributes_for :logo
   def create
     WineApp.create(wineapp_params)
   end

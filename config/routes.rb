@@ -18,6 +18,7 @@ WineAppdb::Application.routes.draw do
   resources :apps, controller: :wine_apps, as: :wine_apps do
 
     resources :screenshots
+    resource :logo
 
     # post "vote", to: "votes#create", as: :create_vote
     # patch "vote",  to: "votes#create", as: :update_vote

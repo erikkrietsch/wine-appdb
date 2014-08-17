@@ -42,6 +42,14 @@ FactoryGirl.define do
     end
   end
 
+  factory :logo do
+    image_file_name "butts.gif"
+    image_content_type "image/gif"
+    image_file_size 1024
+    association :user, strategy: :create
+    association :wine_app, strategy: :create
+  end
+
   factory :screenshot do
     image_file_name "butts.gif"
     image_content_type "image/gif"
@@ -51,7 +59,6 @@ FactoryGirl.define do
     factory :screenshot_with_wine_app do
       association :wine_app, strategy: :create
     end
-
   end
 
   factory :wiki_entry do
