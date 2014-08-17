@@ -1,6 +1,11 @@
 WineAppdb::Application.routes.draw do
   get "static/index"
   get "static/about"
+
+  #for testing purposes only, should be removed when exp-css-well-cleanup branch is merged.
+  get "static/well"
+  
+
   resources :screenshots
 
   get "user/prefs"
