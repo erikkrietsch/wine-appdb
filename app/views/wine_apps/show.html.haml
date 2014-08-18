@@ -13,8 +13,8 @@
         =link_to @wine_app, class: "btn btn-default ", method: :delete, data: { confirm: 'Are you sure?' } do
           %i.fa.fa-trash-o
 
-  .well.well-sm.container-fluid
-    .app-well.row
+  .container.well.well-sm
+    .app-well
       #logo.app-logo.well.well-sm.text-center.col-md-3
         - if @wine_app.logo
           =image_tag(@wine_app.logo.image.url(:thumb))

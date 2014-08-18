@@ -32,9 +32,6 @@ gem 'figaro'
 # Redcarpet held my hand once on the bus to school.
 gem 'redcarpet'
 
-# Helping and hurting all at the same time. Used for easy access to Google's Chart API, for building voting charts.
-gem 'google_visualr', '~> 2.1.0'
-
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 gem 'therubyracer', platforms: :ruby
 
@@ -42,13 +39,11 @@ gem 'therubyracer', platforms: :ruby
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
 gem 'jquery-ui-themes'
-gem 'jquery-turbolinks'
-gem 'turbolinks'
 gem 'font-awesome-rails'
 gem 'hallo-rails', github: 'ErikTRSI/hallo-rails'
 
 gem 'less-rails'
-gem 'twitter-bootstrap-rails'
+gem 'twitter-bootstrap-rails', git: 'git://github.com/seyhunak/twitter-bootstrap-rails.git'
 
 #use the Facebook React library
 #gem 'react-rails'
