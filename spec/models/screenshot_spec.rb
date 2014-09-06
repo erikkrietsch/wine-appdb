@@ -13,5 +13,9 @@ describe Screenshot do
   	expect(screenshot.image.url).to_not be_nil
   end
 
+  it "should not bomb when creating the Factory" do
+    expect{ screenshot }.to_not raise_error
+  end
+
 
 end

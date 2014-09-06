@@ -2,6 +2,7 @@ require 'spec_helper'
 
 describe WineApp do
   let(:wineapp) { FactoryGirl.build(:wine_app) }
+  let(:wineapp_logo) { FactoryGirl.build(:full_wine_app) }
   it "should exist" do
     expect(wineapp).to_not be_nil
   end
@@ -12,7 +13,7 @@ describe WineApp do
     expect(wineapp.description).to_not be_nil
   end
   it "should have a logo" do
-    expect(wineapp.logo).to_not be_nil 
+    expect(wineapp_logo.logo).to_not be_nil 
   end
   it "should have a slug property" do
     expect(wineapp.slug).to_not be_nil

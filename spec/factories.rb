@@ -15,7 +15,7 @@ FactoryGirl.define do
     difficulty_value { rand(100) + 1 }
     # type { ["quality", "ease" ].sample } 
     ip_address "192.168.0.0"
-    association :user, strategy: :build
+    association :user, factory: :user_with_no_confirm, strategy: :create
     association :wine_app, strategy: :build
   end
 
@@ -23,6 +23,12 @@ FactoryGirl.define do
     name "Heinrich Q. Test-eaze"
     sequence(:email) { |n| "hank#{n}@testease.info"}
     password "password"
+
+    factory :user_with_no_confirm do 
+      before(:create) do |user|
+        user.skip_confirmation!
+      end
+    end
 
     factory :user_with_votes do
       ignore do
@@ -43,19 +49,19 @@ FactoryGirl.define do
   end
 
   factory :logo do
-    image_file_name "butts.gif"
+    image_file_name "images/butts.gif"
     image_content_type "image/gif"
     image_file_size 1024
-    association :user, strategy: :create
-    association :wine_app, strategy: :create
+    association :user, factory: :user_with_no_confirm, strategy: :create
+    association :wine_app, strategy: :build
   end
 
   factory :screenshot do
-    image_file_name "butts.gif"
+    image_file_name "images/butts.gif"
     image_content_type "image/gif"
     image_file_size 1024
     title "butts."
-    association :user, strategy: :create
+    association :user, factory: :user_with_no_confirm, strategy: :create
     factory :screenshot_with_wine_app do
       association :wine_app, strategy: :create
     end
@@ -63,7 +69,7 @@ FactoryGirl.define do
 
   factory :wiki_entry do
     content { ["what", "yes", "perhaps", "nope"].sample }
-    association :user, strategy: :build
+    association :user, factory: :user_with_no_confirm, strategy: :build
   end
 
   factory :wiki_problem, class: WikiEntry do
@@ -125,6 +131,7 @@ FactoryGirl.define do
         inst_count 4
         wine_count 6
         problem_count 15
+        association :logo, strategy: :create
       end
       after(:build) do |wine_app, evaluator|
         wine_app.wiki_entries << FactoryGirl.build_list(:wiki_desc, evaluator.desc_count)

@@ -36,7 +36,6 @@ class ScreenshotsController < ApplicationController
 
   # PATCH/PUT /screenshots/1
   def update
-    binding.pry
     if @screenshot.update(screenshot_params)
       redirect_to @screenshot, notice: 'Screenshot was successfully updated.'
     else

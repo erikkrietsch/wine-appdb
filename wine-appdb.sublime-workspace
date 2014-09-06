@@ -4,6 +4,10 @@
 		"selected_items":
 		[
 			[
+				"user_with",
+				"user_with_no_confirm"
+			],
+			[
 				"scr",
 				"screenshot_with_wine_app"
 			],
@@ -247,6 +251,54 @@
 	},
 	"buffers":
 	[
+		{
+			"file": "TODO",
+			"settings":
+			{
+				"buffer_size": 709,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "spec/factories.rb",
+			"settings":
+			{
+				"buffer_size": 4173,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "spec/models/wine_app_spec.rb",
+			"settings":
+			{
+				"buffer_size": 657,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "spec/models/screenshot_spec.rb",
+			"settings":
+			{
+				"buffer_size": 557,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "spec/spec_helper.rb",
+			"settings":
+			{
+				"buffer_size": 2074,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "spec/models/wine_app_problem_spec.rb",
+			"settings":
+			{
+				"buffer_size": 318,
+				"line_ending": "Unix"
+			}
+		}
 	],
 	"build_system": "",
 	"command_palette":
@@ -340,6 +392,7 @@
 	},
 	"file_history":
 	[
+		"/Users/erikkrietsch/.gemrc",
 		"/Users/erikkrietsch/Developer/Rails/wine-appdb/config/routes.rb",
 		"/Users/erikkrietsch/Developer/Rails/wine-appdb/app/models/wine_app.rb",
 		"/Users/erikkrietsch/Developer/Rails/wine-appdb/app/models/logo.rb",
@@ -466,8 +519,7 @@
 		"/Users/erikkrietsch/Developer/Rails/wine-appdb/config/aws.yml",
 		"/Users/erikkrietsch/Developer/Rails/wine-appdb/app/models/developer.rb",
 		"/Users/erikkrietsch/Developer/Rails/wine-appdb/config/initializers/aws.rb",
-		"/Users/erikkrietsch/Developer/Rails/wine-appdb/vendor/bundle/gems/paperclip-3.5.2/lib/paperclip.rb",
-		"/Users/erikkrietsch/Developer/Rails/wine-appdb/app/views/wine_apps/description_history.html.haml"
+		"/Users/erikkrietsch/Developer/Rails/wine-appdb/vendor/bundle/gems/paperclip-3.5.2/lib/paperclip.rb"
 	],
 	"find":
 	{
@@ -589,8 +641,171 @@
 	"groups":
 	[
 		{
+			"selected": 5,
 			"sheets":
 			[
+				{
+					"buffer": 0,
+					"file": "TODO",
+					"settings":
+					{
+						"buffer_size": 709,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								64,
+								64
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "spec/factories.rb",
+					"settings":
+					{
+						"buffer_size": 4173,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								348,
+								348
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Ruby/Ruby.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "spec/models/wine_app_spec.rb",
+					"settings":
+					{
+						"buffer_size": 657,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								444,
+								444
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Ruby/Ruby.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "spec/models/screenshot_spec.rb",
+					"settings":
+					{
+						"buffer_size": 557,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								544,
+								544
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Ruby/Ruby.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "spec/spec_helper.rb",
+					"settings":
+					{
+						"buffer_size": 2074,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								436,
+								436
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Ruby/Ruby.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "spec/models/wine_app_problem_spec.rb",
+					"settings":
+					{
+						"buffer_size": 318,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								199,
+								199
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Ruby/Ruby.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				}
 			]
 		}
 	],
@@ -639,6 +854,10 @@
 		"height": 0.0,
 		"selected_items":
 		[
+			[
+				"ss",
+				"spec/models/screenshot_spec.rb"
+			],
 			[
 				"wac",
 				"app/controllers/wine_apps_controller.rb"

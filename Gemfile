@@ -65,6 +65,11 @@ group :development, :test do
   gem 'pry'
   # For populating data elements as needed
   gem 'seed-fu', github: 'mbleigh/seed-fu'
+  gem 'guard-rspec', '2.5.0'
+  gem 'spork-rails', '4.0.0'
+  gem 'guard-spork', '1.5.0'
+  gem 'ruby_gntp'
+  gem 'childprocess', '0.3.6'
 end
 
 group :test do
@@ -73,6 +78,7 @@ group :test do
   gem 'cucumber-rails', require: false
   gem 'launchy' 
   gem 'capybara'
+  gem 'selenium-webdriver'
 end
 
 group :development do
